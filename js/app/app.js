@@ -18,7 +18,7 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       app.blob.position.x = 13;
       scene.add( app.blob );
       app.smallRing = new THREE.Mesh( geometry.smallRing, material.chrome );
-      app.smallRing.position.x = 14;
+      app.smallRing.position.x = 14.7;
       scene.add( app.smallRing );
     },
     animate: function () {
