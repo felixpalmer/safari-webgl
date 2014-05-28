@@ -1,9 +1,6 @@
-define( ["three", "shader!simple.vert", "shader!simple.frag", "texture"], function ( THREE, simpleVert, simpleFrag, texture ) {
-  // Shader objects support redefining of #defines.
-  // See `simple.frag` file, where `faceColor` is already defined to be white, and we are overriding it to red here
-  simpleFrag.define( "faceColor", "vec3(1.0, 0, 0)" );
+define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "texture"], function ( THREE, cubeCamera, simpleVert, simpleFrag, texture ) {
   return {
-    bump: new THREE.MeshPhongMaterial( { bumpMap: texture.grass } ),
+    chrome: new THREE.MeshBasicMaterial( { envMap: cubeCamera.renderTarget } ),
     grass: new THREE.MeshBasicMaterial( { map: texture.grass } ),
     shader: new THREE.ShaderMaterial( {
       uniforms: {
