@@ -2,6 +2,7 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
   return {
     chrome: new THREE.MeshBasicMaterial( { envMap: cubeCamera.renderTarget } ),
     grass: new THREE.MeshBasicMaterial( { map: texture.grass } ),
+    sky: new THREE.MeshBasicMaterial( { map: texture.sky } ),
     shader: new THREE.ShaderMaterial( {
       uniforms: {
         uColor: { type: "c", value: new THREE.Color( "#ff0000" ) }

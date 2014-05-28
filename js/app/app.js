@@ -3,23 +3,24 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
   var app = {
     clock: new THREE.Clock( true ),
     init: function () {
-      var sky = new THREE.Mesh( new THREE.SphereGeometry( 500, 60, 40 ), material.grass );
-      sky.scale.x = -1;
-      scene.add( sky );
+      app.sky = new THREE.Mesh( new THREE.SphereGeometry( 500, 60, 40 ), material.sky );
+      app.sky.scale.x = -1;
+      scene.add( app.sky );
 
       app.clock.start();
-      app.sphere = new THREE.Mesh( geometry.sphere, material.chrome );
-      scene.add( app.sphere );
+      app.ring = new THREE.Mesh( geometry.ring, material.chrome );
+      scene.add( app.ring );
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
       controls.update();
 
-      var time = app.clock.getElapsedTime() ;
-      app.sphere.rotation.x = 5 * Math.sin( 0.5 * time );
-      app.sphere.rotation.y = 0.4 * Math.sin( 5 * time );
+      //var time = app.clock.getElapsedTime() ;
 
+      app.sky.visible = true;
       cubeCamera.updateCubeMap( renderer, scene );
+      app.sky.visible = false;
+
       renderer.render( scene, camera );
     }
   };
