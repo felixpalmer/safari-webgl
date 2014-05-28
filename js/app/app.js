@@ -3,13 +3,23 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
   var app = {
     clock: new THREE.Clock( true ),
     init: function () {
+      app.clock.start();
+
+      // Create skybox
       app.sky = new THREE.Mesh( new THREE.SphereGeometry( 500, 60, 40 ), material.sky );
       app.sky.scale.x = -1;
       scene.add( app.sky );
 
-      app.clock.start();
+      // Put together compass
+      // TODO refactor into component
       app.ring = new THREE.Mesh( geometry.ring, material.chrome );
       scene.add( app.ring );
+      app.blob = new THREE.Mesh( geometry.blob, material.chrome );
+      app.blob.position.x = 13;
+      scene.add( app.blob );
+      app.smallRing = new THREE.Mesh( geometry.smallRing, material.chrome );
+      app.smallRing.position.x = 14;
+      scene.add( app.smallRing );
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
@@ -17,9 +27,11 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
 
       //var time = app.clock.getElapsedTime() ;
 
+      app.ring.visible = false;
       app.sky.visible = true;
       cubeCamera.updateCubeMap( renderer, scene );
       app.sky.visible = false;
+      app.ring.visible = true;
 
       renderer.render( scene, camera );
     }

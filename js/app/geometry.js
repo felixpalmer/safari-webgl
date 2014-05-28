@@ -1,7 +1,7 @@
 define( ["three"], function ( THREE ) {
   return {
-    cube: new THREE.CubeGeometry( 200, 200, 200 ),
-    sphere: new THREE.SphereGeometry( 200, 32, 16 ),
-    ring: new THREE.TorusGeometry( 10, 3, 32, 100 )
+    blob: new THREE.SphereGeometry( 0.5, 32, 32 ),
+    ring: new THREE.TorusGeometry( 11, 2, 32, 100 ),
+    smallRing: new THREE.TorusGeometry( 0.8, 0.1, 16, 32 )
   };
 } );
