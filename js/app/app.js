@@ -25,8 +25,8 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       app.smallRing.position.x = 14.7;
       scene.add( app.smallRing );
 
-      app.backplate = new THREE.Mesh( geometry.backplate, material.grass );
-      app.ring.castShadow = true;
+      app.backplate = new THREE.Mesh( geometry.backplate, material.world );
+      app.backplate.rotation.z = -Math.PI / 2;
       scene.add( app.backplate );
     },
     animate: function () {

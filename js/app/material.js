@@ -22,6 +22,7 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
       color: 0x00dcdc,
       shading: THREE.FlatShading
     }),
-    wire: new THREE.MeshBasicMaterial( { wireframe: true } )
+    wire: new THREE.MeshBasicMaterial( { wireframe: true } ),
+    world: new THREE.MeshBasicMaterial( { map: texture.world } ),
   };
 } );
