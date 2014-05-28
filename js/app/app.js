@@ -13,13 +13,21 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       // Put together compass
       // TODO refactor into component
       app.ring = new THREE.Mesh( geometry.ring, material.chrome );
+      app.ring.castShadow = true;
+      app.ring.receiveShadow = true;
       scene.add( app.ring );
+
       app.blob = new THREE.Mesh( geometry.blob, material.chrome );
       app.blob.position.x = 13;
       scene.add( app.blob );
+      
       app.smallRing = new THREE.Mesh( geometry.smallRing, material.chrome );
       app.smallRing.position.x = 14.7;
       scene.add( app.smallRing );
+
+      app.backplate = new THREE.Mesh( geometry.backplate, material.grass );
+      app.ring.castShadow = true;
+      scene.add( app.backplate );
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
