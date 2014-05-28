@@ -3,6 +3,6 @@ define( ["three"], function ( THREE ) {
   return {
     grass: THREE.ImageUtils.loadTexture( texturePath + "grass.png" ),
     sky: THREE.ImageUtils.loadTexture( texturePath + "sky.jpg" ),
-    world: THREE.ImageUtils.loadTexture( texturePath + "world.jpg" )
+    world: THREE.ImageUtils.loadTexture( texturePath + "world2.jpg" )
   };
 } );
