@@ -45,6 +45,10 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       app.arrowWhite.position.z = 0.2;
       app.arrowWhite.castShadow = true;
       scene.add( app.arrowWhite );
+
+      app.cover = new THREE.Mesh( geometry.cover, material.cover );
+      app.cover.scale = new THREE.Vector3( 1, 1, 0.1 );
+      scene.add( app.cover );
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );

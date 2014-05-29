@@ -21,6 +21,21 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
       bumpScale: 0.01,
       envMap: cubeCamera.renderTarget
     } ),
+    cover: new THREE.MeshPhongMaterial( {
+      blending: THREE.AdditiveBlending,
+      //blending: THREE.NoBlending,
+      ambient: new THREE.Color( "#000000" ),
+      color: new THREE.Color( "#000000" ),
+      combine: THREE.MixOperation,
+      envMap: cubeCamera.renderTarget,
+      emissive: new THREE.Color( "#000000" ),
+      reflectivity: 0.29,
+      specular: new THREE.Color( "#ffffff" ),
+      shading: THREE.SmoothShading,
+      shininess: 190,
+      transparent: true,
+      opacity: 0.95
+    } ),
     grass: new THREE.MeshBasicMaterial( { map: texture.grass } ),
     sky: new THREE.MeshBasicMaterial( { map: texture.sky } ),
     shader: new THREE.ShaderMaterial( {
