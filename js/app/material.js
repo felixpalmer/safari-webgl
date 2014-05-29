@@ -10,6 +10,7 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
   };
 
   return {
+    arrowGrey: arrowWithColor( new THREE.Color( "#979797" ) ),
     arrowRed: arrowWithColor( new THREE.Color( "#ff2700" ) ),
     arrowWhite: arrowWithColor( new THREE.Color( "#ffffff" ) ),
     chrome: new THREE.MeshPhongMaterial( {

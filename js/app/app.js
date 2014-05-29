@@ -60,16 +60,21 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       var radius = geometry.plateRadius - 0.6;
       for ( var n = 0; n < 72; n++ ) {
         var theta = n * Math.PI / 36;
-        var triangle = new THREE.Mesh( geometry.triangle, material.arrowWhite );
-        var scale = n % 2 ? 0.4 : 0.6;
+        var triangle, scale;
         if ( n % 18 === 0 ) {
+          // Large north south etc triangles
           scale = 1.3;
+          triangle = new THREE.Mesh( geometry.triangle, material.arrowWhite );
+        } else {
+          // All other triangles
+          scale = n % 2 ? 0.5 : 0.8;
+          triangle = new THREE.Mesh( geometry.triangle, material.arrowGrey );
         }
         triangle.position.x = -radius * Math.cos( theta );
         triangle.position.y = -radius * Math.sin( theta );
         triangle.rotation.z = theta;
         triangle.position.z = 0.001;
-        triangle.scale = new THREE.Vector3( scale, 0.6 * scale, scale );
+        triangle.scale = new THREE.Vector3( scale, 0.33 * scale, scale );
         triangle.receiveShadow = true;
         scene.add( triangle );
       }
