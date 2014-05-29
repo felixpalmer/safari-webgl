@@ -3,6 +3,8 @@ define( ["three", "container"], function ( THREE, container ) {
   var renderer = new THREE.WebGLRenderer( { clearColor: 0x000000 } );
   renderer.sortObjects = false;
   renderer.autoClear = false;
+  renderer.shadowMapEnabled = true;
+  renderer.shadowMapType = THREE.PCFShadowMap;
   container.appendChild( renderer.domElement );
 
   var updateSize = function () {

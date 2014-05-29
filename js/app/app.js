@@ -19,14 +19,20 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
 
       app.blob = new THREE.Mesh( geometry.blob, material.chrome );
       app.blob.position.x = 13;
+      app.blob.castShadow = true;
+      app.blob.receiveShadow = true;
       scene.add( app.blob );
       
       app.smallRing = new THREE.Mesh( geometry.smallRing, material.chrome );
       app.smallRing.position.x = 14.7;
+      app.smallRing.castShadow = true;
+      app.smallRing.receiveShadow = true;
       scene.add( app.smallRing );
 
       app.backplate = new THREE.Mesh( geometry.backplate, material.world );
       app.backplate.rotation.z = -Math.PI / 2;
+      app.backplate.castShadow = true;
+      app.backplate.receiveShadow = true;
       scene.add( app.backplate );
     },
     animate: function () {
