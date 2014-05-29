@@ -58,9 +58,13 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       scene.add( app.centerBlob );
       
       var radius = geometry.plateRadius - 0.6;
-      for ( var theta = 0; theta < 2 * Math.PI; theta += Math.PI / 36 ) {
+      for ( var n = 0; n < 72; n++ ) {
+        var theta = n * Math.PI / 36;
         var triangle = new THREE.Mesh( geometry.triangle, material.arrowWhite );
-        var scale = 0.5;
+        var scale = n % 2 ? 0.4 : 0.6;
+        if ( n % 18 === 0 ) {
+          scale = 1.3;
+        }
         triangle.position.x = -radius * Math.cos( theta );
         triangle.position.y = -radius * Math.sin( theta );
         triangle.rotation.z = theta;
