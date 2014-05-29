@@ -47,8 +47,16 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       scene.add( app.arrowWhite );
 
       app.cover = new THREE.Mesh( geometry.cover, material.cover );
+      app.cover.receiveShadow = true;
       app.cover.scale = new THREE.Vector3( 1, 1, 0.1 );
       scene.add( app.cover );
+
+      app.centerBlob = new THREE.Mesh( geometry.blob, material.arrowWhite );
+      app.centerBlob.position.z = 0.28;
+      app.centerBlob.scale = new THREE.Vector3( 0.6, 0.6, 0.25 );
+      app.centerBlob.castShadow = true;
+      scene.add( app.centerBlob );
+      
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
