@@ -34,6 +34,17 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       app.backplate.castShadow = true;
       app.backplate.receiveShadow = true;
       scene.add( app.backplate );
+
+      app.arrowRed = new THREE.Mesh( geometry.arrow, material.arrowRed );
+      app.arrowRed.rotation.z = 0.3 * Math.PI;
+      app.arrowRed.position.z = 0.2;
+      app.arrowRed.castShadow = true;
+      scene.add( app.arrowRed );
+      app.arrowWhite = new THREE.Mesh( geometry.arrow, material.arrowWhite );
+      app.arrowWhite.rotation.z = 1.3 * Math.PI;
+      app.arrowWhite.position.z = 0.2;
+      app.arrowWhite.castShadow = true;
+      scene.add( app.arrowWhite );
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );

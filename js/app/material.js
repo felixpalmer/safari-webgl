@@ -1,5 +1,17 @@
 define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "texture"], function ( THREE, cubeCamera, simpleVert, simpleFrag, texture ) {
+  var arrowWithColor = function( color ) {
+    return new THREE.MeshPhongMaterial( {
+      color: color,
+      emissive: new THREE.Color( "#232323" ),
+      specular: new THREE.Color( "#ccccff" ),
+      shading: THREE.FlatShading,
+      shininess: 40
+    } );
+  };
+
   return {
+    arrowRed: arrowWithColor( new THREE.Color( "#ff2700" ) ),
+    arrowWhite: arrowWithColor( new THREE.Color( "#ffffff" ) ),
     chrome: new THREE.MeshPhongMaterial( {
       color: new THREE.Color( "#c4c4d4" ),
       emissive: new THREE.Color( "#121515" ),
@@ -23,6 +35,6 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
       shading: THREE.FlatShading
     }),
     wire: new THREE.MeshBasicMaterial( { wireframe: true } ),
-    world: new THREE.MeshBasicMaterial( { map: texture.world } ),
+    world: new THREE.MeshBasicMaterial( { map: texture.world } )
   };
 } );
