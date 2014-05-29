@@ -16,25 +16,29 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
       color: new THREE.Color( "#c4c4d4" ),
       emissive: new THREE.Color( "#121515" ),
       specular: new THREE.Color( "#d4d4ff" ),
-      shininess: 15,
+
       bumpMap: texture.grass,
-      bumpScale: 0.01,
-      envMap: cubeCamera.renderTarget
+      bumpScale: 0.003,
+      envMap: cubeCamera.renderTarget,
+      metal: true,
+      shininess: 15
     } ),
     cover: new THREE.MeshPhongMaterial( {
-      blending: THREE.AdditiveBlending,
-      //blending: THREE.NoBlending,
       ambient: new THREE.Color( "#000000" ),
       color: new THREE.Color( "#000000" ),
+      emissive: new THREE.Color( "#000000" ),
+      specular: new THREE.Color( "#ffffff" ),
+
+      blending: THREE.AdditiveBlending,
+      //blending: THREE.NoBlending,
+      opacity: 0.95,
+      shading: THREE.SmoothShading,
+      transparent: true,
+
       combine: THREE.MixOperation,
       envMap: cubeCamera.renderTarget,
-      emissive: new THREE.Color( "#000000" ),
       reflectivity: 0.29,
-      specular: new THREE.Color( "#ffffff" ),
-      shading: THREE.SmoothShading,
-      shininess: 190,
-      transparent: true,
-      opacity: 0.95
+      shininess: 190
     } ),
     grass: new THREE.MeshBasicMaterial( { map: texture.grass } ),
     sky: new THREE.MeshBasicMaterial( { map: texture.sky } ),
