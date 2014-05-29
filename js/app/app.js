@@ -57,6 +57,18 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       app.centerBlob.castShadow = true;
       scene.add( app.centerBlob );
       
+      var radius = geometry.plateRadius - 0.6;
+      for ( var theta = 0; theta < 2 * Math.PI; theta += Math.PI / 36 ) {
+        var triangle = new THREE.Mesh( geometry.triangle, material.arrowWhite );
+        var scale = 0.5;
+        triangle.position.x = -radius * Math.cos( theta );
+        triangle.position.y = -radius * Math.sin( theta );
+        triangle.rotation.z = theta;
+        triangle.position.z = 0.001;
+        triangle.scale = new THREE.Vector3( scale, 0.6 * scale, scale );
+        triangle.receiveShadow = true;
+        scene.add( triangle );
+      }
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
