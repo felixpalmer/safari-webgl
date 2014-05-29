@@ -20,6 +20,7 @@ define( ["three"], function ( THREE ) {
 
   return {
     arrow: arrow,
+    circle: new THREE.CircleGeometry( 2, 32 ),
     cover: new THREE.SphereGeometry( plateRadius, 32, 16, 0, Math.PI ),
     backplate: new THREE.CircleGeometry( plateRadius, 32 ),
     blob: new THREE.SphereGeometry( 1, 32, 32 ),
