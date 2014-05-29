@@ -3,23 +3,61 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
   var app = {
     clock: new THREE.Clock( true ),
     init: function () {
-      var sky = new THREE.Mesh( new THREE.SphereGeometry( 500, 60, 40 ), material.grass );
-      sky.scale.x = -1;
-      scene.add( sky );
-
       app.clock.start();
-      app.sphere = new THREE.Mesh( geometry.sphere, material.chrome );
-      scene.add( app.sphere );
+
+      // Create skybox
+      app.sky = new THREE.Mesh( new THREE.SphereGeometry( 500, 60, 40 ), material.sky );
+      app.sky.scale.x = -1;
+      scene.add( app.sky );
+
+      // Put together compass
+      // TODO refactor into component
+      app.ring = new THREE.Mesh( geometry.ring, material.chrome );
+      app.ring.castShadow = true;
+      app.ring.receiveShadow = true;
+      scene.add( app.ring );
+
+      app.blob = new THREE.Mesh( geometry.blob, material.chrome );
+      app.blob.position.x = 13;
+      app.blob.castShadow = true;
+      app.blob.receiveShadow = true;
+      scene.add( app.blob );
+      
+      app.smallRing = new THREE.Mesh( geometry.smallRing, material.chrome );
+      app.smallRing.position.x = 14.7;
+      app.smallRing.castShadow = true;
+      app.smallRing.receiveShadow = true;
+      scene.add( app.smallRing );
+
+      app.backplate = new THREE.Mesh( geometry.backplate, material.world );
+      app.backplate.rotation.z = -Math.PI / 2;
+      app.backplate.castShadow = true;
+      app.backplate.receiveShadow = true;
+      scene.add( app.backplate );
+
+      app.arrowRed = new THREE.Mesh( geometry.arrow, material.arrowRed );
+      app.arrowRed.rotation.z = 0.3 * Math.PI;
+      app.arrowRed.position.z = 0.2;
+      app.arrowRed.castShadow = true;
+      scene.add( app.arrowRed );
+      app.arrowWhite = new THREE.Mesh( geometry.arrow, material.arrowWhite );
+      app.arrowWhite.rotation.z = 1.3 * Math.PI;
+      app.arrowWhite.position.z = 0.2;
+      app.arrowWhite.castShadow = true;
+      scene.add( app.arrowWhite );
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
       controls.update();
 
-      var time = app.clock.getElapsedTime() ;
-      app.sphere.rotation.x = 5 * Math.sin( 0.5 * time );
-      app.sphere.rotation.y = 0.4 * Math.sin( 5 * time );
+      //var time = app.clock.getElapsedTime() ;
 
+      app.ring.visible = false;
+      app.sky.visible = true;
       cubeCamera.updateCubeMap( renderer, scene );
+      app.sky.visible = false;
+      app.ring.visible = true;
+
       renderer.render( scene, camera );
     }
   };
