@@ -1,6 +1,7 @@
-define( ["three", "camera", "controls", "cubeCamera", "geometry", "light", "material", "renderer", "scene"],
-function ( THREE, camera, controls, cubeCamera, geometry, light, material, renderer, scene ) {
+define( ["three", "camera", "container", "controls", "cubeCamera", "geometry", "light", "material", "renderer", "scene"],
+function ( THREE, camera, container, controls, cubeCamera, geometry, light, material, renderer, scene ) {
   var app = {
+    bearing: 0.3 * Math.PI,
     clock: new THREE.Clock( true ),
     init: function () {
       app.clock.start();
@@ -45,12 +46,12 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       scene.add( app.backplate );
 
       app.arrowRed = new THREE.Mesh( geometry.arrow, material.flatRed );
-      app.arrowRed.rotation.z = 0.3 * Math.PI;
+      app.arrowRed.rotation.z = app.bearing;
       app.arrowRed.position.z = 0.2;
       app.arrowRed.castShadow = true;
       scene.add( app.arrowRed );
       app.arrowWhite = new THREE.Mesh( geometry.arrow, material.flatWhite );
-      app.arrowWhite.rotation.z = 1.3 * Math.PI;
+      app.arrowWhite.rotation.z = app.bearing + Math.PI;
       app.arrowWhite.position.z = 0.2;
       app.arrowWhite.castShadow = true;
       scene.add( app.arrowWhite );
@@ -142,6 +143,10 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
         smallText.rotation.z = theta;
         scene.add( smallText );
       }
+
+      container.onclick = function () {
+        app.bearing = 2 * Math.PI * Math.random();
+      };
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
@@ -151,6 +156,10 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       light.position.y = 7 * Math.sin ( 0.71 * time );
       light.position.x = 2 * Math.cos ( 1.21 * time );
       light.position.x = 30 - 6 * Math.cos ( 1.21 * time );
+
+      var delta = app.arrowRed.rotation.z - app.bearing;
+      app.arrowRed.rotation.z -= 0.03 * delta;
+      app.arrowWhite.rotation.z -= 0.03 * delta;
 
       // Hide elements that we don't want in the reflection map
       app.ring.visible = false;
