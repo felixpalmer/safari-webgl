@@ -153,9 +153,9 @@ function ( THREE, camera, container, controls, cubeCamera, geometry, light, mate
       controls.update();
 
       var time = 2 * app.clock.getElapsedTime() ;
-      light.position.y = 7 * Math.sin ( 0.71 * time );
-      light.position.x = 2 * Math.cos ( 1.21 * time );
-      light.position.x = 30 - 6 * Math.cos ( 1.21 * time );
+      light.position.y = 3 * Math.sin ( 0.71 * time );
+      light.position.x = 1 * Math.cos ( 1.21 * time );
+      light.position.x = 30 - 3 * Math.cos ( 1.21 * time );
 
       var delta = app.arrowRed.rotation.z - app.bearing;
       app.arrowRed.rotation.z -= 0.03 * delta;
