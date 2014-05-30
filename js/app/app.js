@@ -3,6 +3,7 @@ function ( THREE, camera, container, controls, geometry, light, material, render
   var app = {
     bearing: 0.3 * Math.PI,
     clock: new THREE.Clock( true ),
+    mouse: { x: 0, y: 0 },
     init: function () {
       app.clock.start();
 
@@ -144,10 +145,19 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       container.onclick = function () {
         app.bearing = 2 * Math.PI * Math.random();
       };
+      container.addEventListener( 'mousemove', function( e ) {
+        app.mouse = {
+          x: e.clientX - container.offsetWidth / 2,
+          y: e.clientY - container.offsetHeight / 2
+        };
+      } );
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
-      controls.update();
+      //controls.update();
+      camera.position.x += ( - 0.1 * app.mouse.y - camera.position.x ) * 0.05;
+      camera.position.y += ( - 0.1 * app.mouse.x - camera.position.y ) * 0.05;
+      camera.lookAt( scene.position );
 
       var time = 0.7 * app.clock.getElapsedTime() ;
       light.position.y = 3 * Math.sin ( 0.71 * time );
