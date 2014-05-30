@@ -1,4 +1,4 @@
-define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "texture"], function ( THREE, cubeCamera, simpleVert, simpleFrag, texture ) {
+define( ["three", "shader!simple.vert", "shader!simple.frag", "texture"], function ( THREE, simpleVert, simpleFrag, texture ) {
   var flatWithColor = function( color ) {
     return new THREE.MeshPhongMaterial( {
       color: color,
