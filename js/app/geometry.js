@@ -53,6 +53,7 @@ define( ["three", "gentilisBold"], function ( THREE ) {
     circle: new THREE.CircleGeometry( 1.4, 32 ),
     cover: new THREE.SphereGeometry( plateRadius, 32, 16, 0, Math.PI ),
     flatRing: flatRing,
+    flatRingRadius: flatRingRadius,
     backplate: new THREE.CircleGeometry( plateRadius, 32 ),
     blob: new THREE.SphereGeometry( 1, 32, 32 ),
     plateRadius: plateRadius,

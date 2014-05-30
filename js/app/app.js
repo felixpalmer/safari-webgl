@@ -58,10 +58,9 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       scene.add( app.centerBlob );
       
       var radius = geometry.plateRadius - 0.6;
-      var theta;
+      var theta, triangle, scale;
       for ( var n = 0; n < 72; n++ ) {
         theta = n * Math.PI / 36;
-        var triangle, scale;
         if ( n % 18 === 0 ) {
           // Large north south etc triangles
           scale = 1.3;
@@ -103,6 +102,20 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       flatRing.position.z = 0.0009;
       flatRing.receiveShadow = true;
       scene.add( flatRing );
+
+      for ( n = 0; n < 8; n++ ) {
+        theta = n * Math.PI / 4;
+        scale = n % 2 ? 1.6 : 2.4;
+        radius = geometry.flatRingRadius + scale / 2 - 0.1;
+        triangle = new THREE.Mesh( geometry.triangle, material.flatWhite );
+        triangle.position.x = radius * Math.cos( theta );
+        triangle.position.y = radius * Math.sin( theta );
+        triangle.rotation.z = theta;
+        triangle.position.z = 0.002;
+        triangle.scale = new THREE.Vector3( scale, 0.33 * scale, scale );
+        triangle.receiveShadow = true;
+        scene.add( triangle );
+      }
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
