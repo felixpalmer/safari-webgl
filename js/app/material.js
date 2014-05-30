@@ -1,5 +1,5 @@
 define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "texture"], function ( THREE, cubeCamera, simpleVert, simpleFrag, texture ) {
-  var arrowWithColor = function( color ) {
+  var flatWithColor = function( color ) {
     return new THREE.MeshPhongMaterial( {
       color: color,
       emissive: new THREE.Color( "#232323" ),
@@ -10,18 +10,38 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
   };
 
   return {
-    arrowRed: arrowWithColor( new THREE.Color( "#ff2700" ) ),
-    arrowWhite: arrowWithColor( new THREE.Color( "#ffffff" ) ),
     chrome: new THREE.MeshPhongMaterial( {
       color: new THREE.Color( "#c4c4d4" ),
       emissive: new THREE.Color( "#121515" ),
       specular: new THREE.Color( "#d4d4ff" ),
-      shininess: 15,
-      bumpMap: texture.grass,
-      bumpScale: 0.01,
-      envMap: cubeCamera.renderTarget
+
+      bumpMap: texture.brushed,
+      bumpScale: 0.003,
+      envMap: cubeCamera.renderTarget,
+      metal: true,
+      shininess: 15
     } ),
-    grass: new THREE.MeshBasicMaterial( { map: texture.grass } ),
+    cover: new THREE.MeshPhongMaterial( {
+      ambient: new THREE.Color( "#000000" ),
+      color: new THREE.Color( "#000000" ),
+      emissive: new THREE.Color( "#000000" ),
+      specular: new THREE.Color( "#ffffff" ),
+
+      blending: THREE.AdditiveBlending,
+      //blending: THREE.NoBlending,
+      opacity: 0.95,
+      shading: THREE.SmoothShading,
+      transparent: true,
+
+      combine: THREE.MixOperation,
+      envMap: cubeCamera.renderTarget,
+      reflectivity: 0.29,
+      shininess: 190
+    } ),
+    flatBlue: flatWithColor( new THREE.Color( "#0091cb" ) ),
+    flatGrey: flatWithColor( new THREE.Color( "#979797" ) ),
+    flatRed: flatWithColor( new THREE.Color( "#ff2700" ) ),
+    flatWhite: flatWithColor( new THREE.Color( "#ffffff" ) ),
     sky: new THREE.MeshBasicMaterial( { map: texture.sky } ),
     shader: new THREE.ShaderMaterial( {
       uniforms: {
@@ -35,6 +55,10 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
       shading: THREE.FlatShading
     }),
     wire: new THREE.MeshBasicMaterial( { wireframe: true } ),
+    wood: new THREE.MeshPhongMaterial( {
+      shininess: 0,
+      map: texture.wood
+    } ),
     world: new THREE.MeshBasicMaterial( { map: texture.world } )
   };
 } );
