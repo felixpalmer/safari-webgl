@@ -15,7 +15,7 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
       emissive: new THREE.Color( "#121515" ),
       specular: new THREE.Color( "#d4d4ff" ),
 
-      bumpMap: texture.grass,
+      bumpMap: texture.brushed,
       bumpScale: 0.003,
       envMap: cubeCamera.renderTarget,
       metal: true,
@@ -42,7 +42,6 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
     flatGrey: flatWithColor( new THREE.Color( "#979797" ) ),
     flatRed: flatWithColor( new THREE.Color( "#ff2700" ) ),
     flatWhite: flatWithColor( new THREE.Color( "#ffffff" ) ),
-    grass: new THREE.MeshBasicMaterial( { map: texture.grass } ),
     sky: new THREE.MeshBasicMaterial( { map: texture.sky } ),
     shader: new THREE.ShaderMaterial( {
       uniforms: {
@@ -56,9 +55,9 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
       shading: THREE.FlatShading
     }),
     wire: new THREE.MeshBasicMaterial( { wireframe: true } ),
-    wood: new THREE.MeshPhongMaterial( { 
+    wood: new THREE.MeshPhongMaterial( {
       shininess: 0,
-      map: texture.wood 
+      map: texture.wood
     } ),
     world: new THREE.MeshBasicMaterial( { map: texture.world } )
   };

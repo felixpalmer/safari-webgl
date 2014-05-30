@@ -20,6 +20,7 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       // TODO refactor into component
       app.ring = new THREE.Mesh( geometry.ring, material.chrome );
       app.ring.castShadow = true;
+      //app.ring.position.z = 5;
       app.ring.receiveShadow = true;
       scene.add( app.ring );
 
@@ -145,6 +146,8 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       controls.update();
 
       //var time = app.clock.getElapsedTime() ;
+      //light.position.y = 20 * Math.sin ( time / 4 );
+      //light.position.x = 20 * Math.cos ( time / 4 );
 
       // Hide elements that we don't want in the reflection map
       app.ring.visible = false;
