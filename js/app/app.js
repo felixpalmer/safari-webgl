@@ -79,6 +79,7 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
         scene.add( triangle );
       }
       
+      // 4 labels for cardinal directions
       var directions = ["N", "W", "S", "E"];
       radius = geometry.plateRadius - 2.9;
       for ( var d = 0; d < 4; d++ ) {
@@ -90,7 +91,7 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
         text.position.y = circle.position.y = radius * Math.sin( theta );
         if ( d % 2 === 1 ) {
           // Only rotate east and west
-          text.rotation.z = d * Math.PI / 2;
+          text.rotation.z = theta;
         }
         circle.position.z = 0.0009;
         text.position.z = 0.002;
@@ -98,11 +99,13 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
         scene.add( text );
       }
 
+      // Inner white ring
       var flatRing = new THREE.Mesh( geometry.flatRing, material.flatWhite );
       flatRing.position.z = 0.0009;
       flatRing.receiveShadow = true;
       scene.add( flatRing );
 
+      // Triangles pointing out from inner ring
       for ( n = 0; n < 8; n++ ) {
         theta = n * Math.PI / 4;
         scale = n % 2 ? 1.6 : 2.4;
@@ -115,6 +118,21 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
         triangle.scale = new THREE.Vector3( scale, 0.33 * scale, scale );
         triangle.receiveShadow = true;
         scene.add( triangle );
+      }
+
+      // Small labels, NE, SE etc
+      directions = ["NW", "SW", "SE", "NE"];
+      radius = 8.6;
+      for ( d = 0; d < 4; d++ ) {
+        var smallText = new THREE.Mesh( geometry.text( directions[d] ), material.flatWhite );
+
+        theta = d * Math.PI / 2 + Math.PI / 4;
+        smallText.position.x = radius * Math.cos( theta );
+        smallText.position.y = radius * Math.sin( theta );
+        smallText.position.z = 0.002;
+        smallText.scale = new THREE.Vector3( 0.4, 0.4, 1 );
+        smallText.rotation.z = theta;
+        scene.add( smallText );
       }
     },
     animate: function () {

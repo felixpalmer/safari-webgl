@@ -21,7 +21,7 @@ define( ["three", "gentilisBold"], function ( THREE ) {
   var createText = function( t ) {
     var text = new THREE.TextGeometry( t, {
       size: 2,
-      height: 0.1,
+      height: 0.04,
       font: "gentilis",
       weight: "bold",
       style: "normal"
