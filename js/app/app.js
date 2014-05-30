@@ -78,7 +78,7 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
         triangle.position.x = -radius * Math.cos( theta );
         triangle.position.y = -radius * Math.sin( theta );
         triangle.rotation.z = theta;
-        triangle.position.z = 0.001;
+        triangle.position.z = 0.01;
         triangle.scale = new THREE.Vector3( scale, 0.33 * scale, scale );
         triangle.receiveShadow = true;
         scene.add( triangle );
@@ -98,15 +98,15 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
           // Only rotate east and west
           text.rotation.z = theta;
         }
-        circle.position.z = 0.0009;
-        text.position.z = 0.002;
+        circle.position.z = 0.005;
+        text.position.z = 0.01;
         scene.add( circle );
         scene.add( text );
       }
 
       // Inner white ring
       var flatRing = new THREE.Mesh( geometry.flatRing, material.flatWhite );
-      flatRing.position.z = 0.0009;
+      flatRing.position.z = 0.01;
       flatRing.receiveShadow = true;
       scene.add( flatRing );
 

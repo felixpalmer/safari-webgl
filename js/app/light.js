@@ -7,7 +7,7 @@ define( ["three", "scene"], function ( THREE, scene ) {
   light.shadowCameraNear = 40;
   light.shadowCameraFar = 80;
   light.shadowCameraFov = 30;
-  light.shadowBias = 0.0001;
+  light.shadowBias = 0.001;
   light.shadowDarkness = 0.6;
   light.shadowMapWidth = 2048;
   light.shadowMapHeight = 1024;
