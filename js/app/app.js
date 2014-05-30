@@ -1,15 +1,10 @@
-define( ["three", "camera", "container", "controls", "cubeCamera", "geometry", "light", "material", "renderer", "scene"],
-function ( THREE, camera, container, controls, cubeCamera, geometry, light, material, renderer, scene ) {
+define( ["three", "camera", "container", "controls", "geometry", "light", "material", "renderer", "scene"],
+function ( THREE, camera, container, controls, geometry, light, material, renderer, scene ) {
   var app = {
     bearing: 0.3 * Math.PI,
     clock: new THREE.Clock( true ),
     init: function () {
       app.clock.start();
-
-      // Create skybox
-      app.sky = new THREE.Mesh( new THREE.SphereGeometry( 500, 60, 40 ), material.sky );
-      app.sky.scale.x = -1;
-      scene.add( app.sky );
 
       // Table to place compass on
       app.table = new THREE.Mesh( geometry.table, material.wood );
@@ -61,8 +56,8 @@ function ( THREE, camera, container, controls, cubeCamera, geometry, light, mate
       scene.add( app.cover );
 
       app.centerBlob = new THREE.Mesh( geometry.blob, material.flatWhite );
-      app.centerBlob.position.z = 0.28;
-      app.centerBlob.scale = new THREE.Vector3( 0.6, 0.6, 0.25 );
+      app.centerBlob.position.z = 0.33;
+      app.centerBlob.scale = new THREE.Vector3( 0.7, 0.7, 0.35 );
       app.centerBlob.castShadow = true;
       scene.add( app.centerBlob );
       
@@ -104,6 +99,8 @@ function ( THREE, camera, container, controls, cubeCamera, geometry, light, mate
         }
         circle.position.z = 0.005;
         text.position.z = 0.01;
+        circle.receiveShadow = true;
+        text.receiveShadow = true;
         scene.add( circle );
         scene.add( text );
       }
@@ -152,23 +149,14 @@ function ( THREE, camera, container, controls, cubeCamera, geometry, light, mate
       window.requestAnimationFrame( app.animate );
       controls.update();
 
-      var time = 2 * app.clock.getElapsedTime() ;
-      light.position.y = 3 * Math.sin ( 0.71 * time );
-      light.position.x = 1 * Math.cos ( 1.21 * time );
-      light.position.x = 30 - 3 * Math.cos ( 1.21 * time );
+      //var time = 2 * app.clock.getElapsedTime() ;
+      //light.position.y = 3 * Math.sin ( 0.71 * time );
+      //light.position.x = 1 * Math.cos ( 1.21 * time );
+      //light.position.x = 30 - 3 * Math.cos ( 1.21 * time );
 
       var delta = app.arrowRed.rotation.z - app.bearing;
       app.arrowRed.rotation.z -= 0.03 * delta;
       app.arrowWhite.rotation.z -= 0.03 * delta;
-
-      // Hide elements that we don't want in the reflection map
-      app.ring.visible = false;
-      app.table.visible = false;
-      app.sky.visible = true;
-      cubeCamera.updateCubeMap( renderer, scene );
-      app.ring.visible = true;
-      app.table.visible = true;
-      app.sky.visible = false;
 
       renderer.render( scene, camera );
     }

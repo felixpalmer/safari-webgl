@@ -10,7 +10,7 @@ define( ["three", "scene"], function ( THREE, scene ) {
   light.shadowBias = 0.001;
   light.shadowDarkness = 0.6;
   light.shadowMapWidth = 2048;
-  light.shadowMapHeight = 1024;
+  light.shadowMapHeight = 2048;
   scene.add( light );
   return light;
 } );

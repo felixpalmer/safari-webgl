@@ -17,7 +17,7 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
 
       bumpMap: texture.brushed,
       bumpScale: 0.003,
-      envMap: cubeCamera.renderTarget,
+      envMap: texture.sky,
       metal: true,
       shininess: 15
     } ),
@@ -34,7 +34,7 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
       transparent: true,
 
       combine: THREE.MixOperation,
-      envMap: cubeCamera.renderTarget,
+      envMap: texture.sky,
       reflectivity: 0.29,
       shininess: 190
     } ),
