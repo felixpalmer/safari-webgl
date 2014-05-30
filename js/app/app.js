@@ -149,10 +149,10 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       window.requestAnimationFrame( app.animate );
       controls.update();
 
-      //var time = 2 * app.clock.getElapsedTime() ;
-      //light.position.y = 3 * Math.sin ( 0.71 * time );
-      //light.position.x = 1 * Math.cos ( 1.21 * time );
-      //light.position.x = 30 - 3 * Math.cos ( 1.21 * time );
+      var time = 0.7 * app.clock.getElapsedTime() ;
+      light.position.y = 3 * Math.sin ( 0.71 * time );
+      light.position.x = 1 * Math.cos ( 1.21 * time );
+      light.position.x = 30 - 3 * Math.cos ( 1.21 * time );
 
       var delta = app.arrowRed.rotation.z - app.bearing;
       app.arrowRed.rotation.z -= 0.03 * delta;
