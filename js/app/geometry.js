@@ -81,7 +81,7 @@ define( ["three", "gentilisBold"], function ( THREE ) {
     plateRadius: plateRadius,
     ring: ring,
     smallRing: new THREE.TorusGeometry( 1.3, 0.1, 16, 32 ),
-    table: new THREE.PlaneGeometry( 100, 100 ),
+    table: new THREE.PlaneGeometry( 600, 600 ),
     text: createText,
     triangle: triangle
   };

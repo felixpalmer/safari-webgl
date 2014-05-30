@@ -13,6 +13,8 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       // Table to place compass on
       app.table = new THREE.Mesh( geometry.table, material.wood );
       app.table.receiveShadow = true;
+      app.table.position.x = -50;
+      app.table.position.y = 50;
       app.table.position.z = -geometry.chromeRadius;
       scene.add( app.table );
 
@@ -145,9 +147,10 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       window.requestAnimationFrame( app.animate );
       controls.update();
 
-      //var time = app.clock.getElapsedTime() ;
-      //light.position.y = 20 * Math.sin ( time / 4 );
-      //light.position.x = 20 * Math.cos ( time / 4 );
+      var time = 2 * app.clock.getElapsedTime() ;
+      light.position.y = 7 * Math.sin ( 0.71 * time );
+      light.position.x = 2 * Math.cos ( 1.21 * time );
+      light.position.x = 30 - 6 * Math.cos ( 1.21 * time );
 
       // Hide elements that we don't want in the reflection map
       app.ring.visible = false;
