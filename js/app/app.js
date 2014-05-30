@@ -28,13 +28,13 @@ function ( THREE, camera, container, controls, cubeCamera, geometry, light, mate
       scene.add( app.ring );
 
       app.blob = new THREE.Mesh( geometry.blob, material.chrome );
-      app.blob.position.x = 13;
+      app.blob.position.x = geometry.compassRadius;
       app.blob.castShadow = true;
       app.blob.receiveShadow = true;
       scene.add( app.blob );
       
       app.smallRing = new THREE.Mesh( geometry.smallRing, material.chrome );
-      app.smallRing.position.x = 14.7;
+      app.smallRing.position.x = geometry.compassRadius + 1.2;
       app.smallRing.castShadow = true;
       app.smallRing.receiveShadow = true;
       scene.add( app.smallRing );
