@@ -84,11 +84,15 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       radius = geometry.plateRadius - 4;
       for ( var d = 0; d < 4; d++ ) {
         var circle = new THREE.Mesh( geometry.circle, material.arrowRed );
+        var text = new THREE.Mesh( geometry.text( directions[d] ), material.arrowWhite );
+
         theta = d * Math.PI / 2;
-        circle.position.x = radius * Math.cos( theta );
-        circle.position.y = radius * Math.sin( theta );
+        text.position.x = circle.position.x = radius * Math.cos( theta );
+        text.position.y = circle.position.y = radius * Math.sin( theta );
         circle.position.z = 0.001;
+        text.position.z = 0.002;
         scene.add( circle );
+        scene.add( text );
       }
     },
     animate: function () {

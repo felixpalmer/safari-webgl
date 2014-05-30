@@ -1,10 +1,10 @@
-define( ["three"], function ( THREE ) {
+define( ["three", "gentilisBold"], function ( THREE ) {
   var plateRadius = 10.8;
   var chromeRadius = 1.2;
 
   var arrowPoints = [
     new THREE.Vector3( 0, 0, 0 ),
-    new THREE.Vector3( 0, 1, 0 ),
+    new THREE.Vector3( 0, 1.3, 0 ),
     new THREE.Vector3( 0, 0, 10 )
   ];
   var arrow = new THREE.LatheGeometry( arrowPoints, 3 );
@@ -18,6 +18,21 @@ define( ["three"], function ( THREE ) {
 
   var triangle = new THREE.CircleGeometry( 1, 3 );
 
+  var createText = function( t ) {
+    var text = new THREE.TextGeometry( t, {
+      size: 2,
+      height: 0.1,
+      font: "gentilis",
+      weight: "bold",
+      style: "normal"
+    } );
+    m.makeRotationZ( -Math.PI / 2 );
+    text.applyMatrix( m );
+    m.makeTranslation( -1.2, 1, 0 );
+    text.applyMatrix( m );
+    return text;
+  };
+
   return {
     arrow: arrow,
     circle: new THREE.CircleGeometry( 2, 32 ),
@@ -27,6 +42,7 @@ define( ["three"], function ( THREE ) {
     plateRadius: plateRadius,
     ring: new THREE.TorusGeometry( plateRadius + chromeRadius / 2, chromeRadius, 32, 100 ),
     smallRing: new THREE.TorusGeometry( 1.3, 0.1, 16, 32 ),
+    text: createText,
     triangle: triangle
   };
 } );
