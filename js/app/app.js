@@ -98,6 +98,11 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
         scene.add( circle );
         scene.add( text );
       }
+
+      var flatRing = new THREE.Mesh( geometry.flatRing, material.flatWhite );
+      flatRing.position.z = 0.0009;
+      flatRing.receiveShadow = true;
+      scene.add( flatRing );
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );

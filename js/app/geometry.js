@@ -41,10 +41,18 @@ define( ["three", "gentilisBold"], function ( THREE ) {
     return text;
   };
 
+  var flatRingRadius = 3.33;
+  var flatRingPoints = [
+    new THREE.Vector3( flatRingRadius + 0.1, 0, 0 ),
+    new THREE.Vector3( flatRingRadius - 0.1, 0, 0 )
+  ];
+  var flatRing = new THREE.LatheGeometry( flatRingPoints, 64 );
+
   return {
     arrow: arrow,
     circle: new THREE.CircleGeometry( 1.4, 32 ),
     cover: new THREE.SphereGeometry( plateRadius, 32, 16, 0, Math.PI ),
+    flatRing: flatRing,
     backplate: new THREE.CircleGeometry( plateRadius, 32 ),
     blob: new THREE.SphereGeometry( 1, 32, 32 ),
     plateRadius: plateRadius,
