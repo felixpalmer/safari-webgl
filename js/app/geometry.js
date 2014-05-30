@@ -51,6 +51,7 @@ define( ["three", "gentilisBold"], function ( THREE ) {
   return {
     arrow: arrow,
     circle: new THREE.CircleGeometry( 1.4, 32 ),
+    chromeRadius: chromeRadius,
     cover: new THREE.SphereGeometry( plateRadius, 32, 16, 0, Math.PI ),
     flatRing: flatRing,
     flatRingRadius: flatRingRadius,
@@ -59,6 +60,7 @@ define( ["three", "gentilisBold"], function ( THREE ) {
     plateRadius: plateRadius,
     ring: new THREE.TorusGeometry( plateRadius + chromeRadius / 2, chromeRadius, 32, 100 ),
     smallRing: new THREE.TorusGeometry( 1.3, 0.1, 16, 32 ),
+    table: new THREE.PlaneGeometry( 100, 100 ),
     text: createText,
     triangle: triangle
   };

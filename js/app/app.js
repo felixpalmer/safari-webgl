@@ -10,6 +10,12 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       app.sky.scale.x = -1;
       scene.add( app.sky );
 
+      // Table to place compass on
+      app.table = new THREE.Mesh( geometry.table, material.wood );
+      app.table.receiveShadow = true;
+      app.table.position.z = -geometry.chromeRadius;
+      scene.add( app.table );
+
       // Put together compass
       // TODO refactor into component
       app.ring = new THREE.Mesh( geometry.ring, material.chrome );
@@ -47,7 +53,6 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       scene.add( app.arrowWhite );
 
       app.cover = new THREE.Mesh( geometry.cover, material.cover );
-      app.cover.receiveShadow = true;
       app.cover.scale = new THREE.Vector3( 1, 1, 0.1 );
       scene.add( app.cover );
 
@@ -141,11 +146,14 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
 
       //var time = app.clock.getElapsedTime() ;
 
+      // Hide elements that we don't want in the reflection map
       app.ring.visible = false;
+      app.table.visible = false;
       app.sky.visible = true;
       cubeCamera.updateCubeMap( renderer, scene );
-      app.sky.visible = false;
       app.ring.visible = true;
+      app.table.visible = true;
+      app.sky.visible = false;
 
       renderer.render( scene, camera );
     }
