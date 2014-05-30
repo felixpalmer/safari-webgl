@@ -28,14 +28,22 @@ define( ["three", "gentilisBold"], function ( THREE ) {
     } );
     m.makeRotationZ( -Math.PI / 2 );
     text.applyMatrix( m );
-    m.makeTranslation( -1.2, 1, 0 );
+    // A bit of a hack, but we can't center text otherwise :(
+    if ( t === "N" ) {
+      m.makeTranslation( -0.8, 0.9, 0 );
+    } else if ( t === "W" ) {
+      m.makeTranslation( -1, 1.2, 0 );
+    } else {
+      m.makeTranslation( -0.8, 0.8, 0 );
+    }
+
     text.applyMatrix( m );
     return text;
   };
 
   return {
     arrow: arrow,
-    circle: new THREE.CircleGeometry( 2, 32 ),
+    circle: new THREE.CircleGeometry( 1.4, 32 ),
     cover: new THREE.SphereGeometry( plateRadius, 32, 16, 0, Math.PI ),
     backplate: new THREE.CircleGeometry( plateRadius, 32 ),
     blob: new THREE.SphereGeometry( 1, 32, 32 ),

@@ -35,12 +35,12 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       app.backplate.receiveShadow = true;
       scene.add( app.backplate );
 
-      app.arrowRed = new THREE.Mesh( geometry.arrow, material.arrowRed );
+      app.arrowRed = new THREE.Mesh( geometry.arrow, material.flatRed );
       app.arrowRed.rotation.z = 0.3 * Math.PI;
       app.arrowRed.position.z = 0.2;
       app.arrowRed.castShadow = true;
       scene.add( app.arrowRed );
-      app.arrowWhite = new THREE.Mesh( geometry.arrow, material.arrowWhite );
+      app.arrowWhite = new THREE.Mesh( geometry.arrow, material.flatWhite );
       app.arrowWhite.rotation.z = 1.3 * Math.PI;
       app.arrowWhite.position.z = 0.2;
       app.arrowWhite.castShadow = true;
@@ -51,7 +51,7 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       app.cover.scale = new THREE.Vector3( 1, 1, 0.1 );
       scene.add( app.cover );
 
-      app.centerBlob = new THREE.Mesh( geometry.blob, material.arrowWhite );
+      app.centerBlob = new THREE.Mesh( geometry.blob, material.flatWhite );
       app.centerBlob.position.z = 0.28;
       app.centerBlob.scale = new THREE.Vector3( 0.6, 0.6, 0.25 );
       app.centerBlob.castShadow = true;
@@ -65,11 +65,11 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
         if ( n % 18 === 0 ) {
           // Large north south etc triangles
           scale = 1.3;
-          triangle = new THREE.Mesh( geometry.triangle, material.arrowWhite );
+          triangle = new THREE.Mesh( geometry.triangle, material.flatWhite );
         } else {
           // All other triangles
           scale = n % 2 ? 0.5 : 0.8;
-          triangle = new THREE.Mesh( geometry.triangle, material.arrowGrey );
+          triangle = new THREE.Mesh( geometry.triangle, material.flatGrey );
         }
         triangle.position.x = -radius * Math.cos( theta );
         triangle.position.y = -radius * Math.sin( theta );
@@ -80,16 +80,20 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
         scene.add( triangle );
       }
       
-      var directions = ["N", "E", "S", "W"];
-      radius = geometry.plateRadius - 4;
+      var directions = ["N", "W", "S", "E"];
+      radius = geometry.plateRadius - 2.9;
       for ( var d = 0; d < 4; d++ ) {
-        var circle = new THREE.Mesh( geometry.circle, material.arrowRed );
-        var text = new THREE.Mesh( geometry.text( directions[d] ), material.arrowWhite );
+        var circle = new THREE.Mesh( geometry.circle, material.flatBlue );
+        var text = new THREE.Mesh( geometry.text( directions[d] ), material.flatWhite );
 
         theta = d * Math.PI / 2;
         text.position.x = circle.position.x = radius * Math.cos( theta );
         text.position.y = circle.position.y = radius * Math.sin( theta );
-        circle.position.z = 0.001;
+        if ( d % 2 === 1 ) {
+          // Only rotate east and west
+          text.rotation.z = d * Math.PI / 2;
+        }
+        circle.position.z = 0.0009;
         text.position.z = 0.002;
         scene.add( circle );
         scene.add( text );
