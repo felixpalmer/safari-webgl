@@ -2,13 +2,9 @@
 
 html {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.2;
-  color: #fed;
-  text-shadow: black 5px 5px;
-  text-align: center;
-  background: #113;
-  background: linear-gradient(45deg, #113, #101);
+  color: #fff;
 }
 
 html, body, #container {
@@ -21,8 +17,24 @@ p {
   margin: 0 0 10px 0;
 }
 
+#share-container {
+  position: absolute;
+  top: 0;
+  background: #000;
+  opacity: 0.8;
+  color: #fff;
+  height: 50px;
+  width: 100%;
+}
+
+#share-container p, #share-container a {
+  float: left;
+  margin: 10px auto;
+  padding-left: 10px;
+}
+
 #threejs-container {
-  background:#000;
+  background: #000;
   color: #666;
   height: 100%;
   width: 100%;
