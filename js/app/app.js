@@ -3,7 +3,7 @@ function ( THREE, camera, container, controls, geometry, light, material, render
   var app = {
     bearing: 0.3 * Math.PI,
     clock: new THREE.Clock( true ),
-    mouse: { x: 0, y: 0 },
+    mouse: { x: 100, y: 200 },
     init: function () {
       app.clock.start();
 
@@ -16,10 +16,8 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       scene.add( app.table );
 
       // Put together compass
-      // TODO refactor into component
       app.ring = new THREE.Mesh( geometry.ring, material.chrome );
       app.ring.castShadow = true;
-      //app.ring.position.z = 5;
       app.ring.receiveShadow = true;
       scene.add( app.ring );
 
@@ -141,6 +139,11 @@ function ( THREE, camera, container, controls, geometry, light, material, render
         smallText.rotation.z = theta;
         scene.add( smallText );
       }
+      var creditText = new THREE.Mesh( geometry.text( "@pheeelicks" ), material.flatGrey );
+      creditText.position.y = -3.7;
+      creditText.position.z = 0.1;
+      creditText.scale = new THREE.Vector3( 0.1, 0.1, 0.1 );
+      scene.add( creditText );
 
       container.onclick = function () {
         app.bearing = 2 * Math.PI * Math.random();
