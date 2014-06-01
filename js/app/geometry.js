@@ -1,6 +1,6 @@
 define( ["three", "gentilisBold"], function ( THREE ) {
   var plateRadius = 10.8;
-  var rimRadius = 0.4;
+  var rimRadius = 0.7;
   var chromeRadius = 1.6;
 
   // Define cross section of ring using a path

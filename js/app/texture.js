@@ -18,13 +18,18 @@ define( ["three"], function ( THREE ) {
   //sky.mapping = THREE.SphericalReflectionMapping;
 
   var wood = THREE.ImageUtils.loadTexture( texturePath + "wood.jpg" );
-  wood.repeat = new THREE.Vector2( 10, 10 );
+  wood.repeat = new THREE.Vector2( 13, 13 );
   wood.wrapS = THREE.RepeatWrapping;
   wood.wrapT = THREE.RepeatWrapping;
+  var woodBump = THREE.ImageUtils.loadTexture( texturePath + "woodBump.jpg" );
+  woodBump.repeat = new THREE.Vector2( 13, 13 );
+  woodBump.wrapS = THREE.RepeatWrapping;
+  woodBump.wrapT = THREE.RepeatWrapping;
   return {
     brushed: brushed,
     sky: sky,
     wood: wood,
+    woodBump: woodBump,
     world: THREE.ImageUtils.loadTexture( texturePath + "world2.jpg" )
   };
 } );

@@ -121,7 +121,7 @@ function ( THREE, camera, container, controls, geometry, light, material, render
         triangle.position.x = radius * Math.cos( theta );
         triangle.position.y = radius * Math.sin( theta );
         triangle.rotation.z = theta;
-        triangle.position.z = 0.002;
+        triangle.position.z = 0.015;
         triangle.scale = new THREE.Vector3( scale, 0.33 * scale, scale );
         triangle.receiveShadow = true;
         scene.add( triangle );
@@ -155,8 +155,16 @@ function ( THREE, camera, container, controls, geometry, light, material, render
     animate: function () {
       window.requestAnimationFrame( app.animate );
       //controls.update();
-      camera.position.x += ( - 0.1 * app.mouse.y - camera.position.x ) * 0.05;
-      camera.position.y += ( - 0.1 * app.mouse.x - camera.position.y ) * 0.05;
+
+      // Calculate where camera should move to and smoothly pan
+      var camPosition = new THREE.Vector3(
+        - 0.1 * app.mouse.y,
+        - 0.1 * app.mouse.x,
+        10 + 0.07 * Math.abs( app.mouse.y )
+      );
+      camera.position.x += ( camPosition.x - camera.position.x ) * 0.05;
+      camera.position.y += ( camPosition.y - camera.position.y ) * 0.05;
+      camera.position.z += ( camPosition.z  - camera.position.z ) * 0.05;
       camera.lookAt( scene.position );
 
       var time = 0.7 * app.clock.getElapsedTime() ;

@@ -38,7 +38,7 @@ define( ["three", "shader!simple.vert", "shader!simple.frag", "texture"], functi
       reflectivity: 0.29,
       shininess: 190
     } ),
-    flatBlue: flatWithColor( new THREE.Color( "#0091cb" ) ),
+    flatBlue: flatWithColor( new THREE.Color( "#1557fb" ) ),
     flatGrey: flatWithColor( new THREE.Color( "#979797" ) ),
     flatRed: flatWithColor( new THREE.Color( "#ff2700" ) ),
     flatWhite: flatWithColor( new THREE.Color( "#ffffff" ) ),
@@ -56,8 +56,13 @@ define( ["three", "shader!simple.vert", "shader!simple.frag", "texture"], functi
     }),
     wire: new THREE.MeshBasicMaterial( { wireframe: true } ),
     wood: new THREE.MeshPhongMaterial( {
-      shininess: 0,
-      map: texture.wood
+      ambient: new THREE.Color( "#000000" ),
+      emissive: new THREE.Color( "#000000" ),
+      specular: new THREE.Color( "#b15712" ),
+      shininess: 10,
+      map: texture.wood,
+      bumpScale: 0.06,
+      bumpMap: texture.wood
     } ),
     world: new THREE.MeshBasicMaterial( { map: texture.world } )
   };
