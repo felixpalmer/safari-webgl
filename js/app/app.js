@@ -70,11 +70,11 @@ function ( THREE, camera, container, controls, geometry, light, material, render
           triangle = new THREE.Mesh( geometry.triangle, material.flatWhite );
         } else {
           // All other triangles
-          scale = n % 2 ? 0.5 : 0.8;
+          scale = n % 2 ? 0.4 : 0.8;
           triangle = new THREE.Mesh( geometry.triangle, material.flatGrey );
         }
-        triangle.position.x = -radius * Math.cos( theta );
-        triangle.position.y = -radius * Math.sin( theta );
+        triangle.position.x = -( radius + scale / 2) * Math.cos( theta );
+        triangle.position.y = -( radius + scale / 2) * Math.sin( theta );
         triangle.rotation.z = theta;
         triangle.position.z = 0.01;
         triangle.scale = new THREE.Vector3( scale, 0.33 * scale, scale );

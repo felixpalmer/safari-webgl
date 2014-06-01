@@ -6,7 +6,7 @@ define( ["three", "gentilisBold"], function ( THREE ) {
   // Define cross section of ring using a path
   var ringPath = new THREE.Path();
   ringPath.moveTo( plateRadius - 0.2, 0.2 );
-  ringPath.lineTo( plateRadius + rimRadius, 0 );
+  ringPath.lineTo( plateRadius + rimRadius, 0.1 );
   //ringPath.lineTo( plateRadius - 1, 4 );
   ringPath.absarc( plateRadius + rimRadius + chromeRadius, 0,
                    chromeRadius,
