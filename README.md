@@ -3,7 +3,7 @@ safari-webgl
 
 3D model of Safari logo using WebGL
 
-[Live demo](http://felixpalmer.github.io/safari-webgl/) of this repository can be found at [https://github.com/felixpalmer/amd-three.js](http://felixpalmer.github.io/safari-webgl/)
+[Live demo](http://felixpalmer.github.io/safari-webgl/) of this repository can be found at [https://github.com/felixpalmer/safari-webgl](http://felixpalmer.github.io/safari-webgl/)
 
 ![](https://github.com/felixpalmer/safari-webgl/raw/master/screenshots/screenshot1.png)
 
