@@ -28,11 +28,11 @@ p {
   width: 100%;
 }
 
-#share-container p, #share-container a {
+#share-container p {
   float: left;
   margin: 0 auto;
   padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 30px;
 }
 
 #threejs-container {
