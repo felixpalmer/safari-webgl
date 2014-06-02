@@ -23,14 +23,16 @@ p {
   background: #000;
   opacity: 0.8;
   color: #fff;
-  height: 50px;
+  padding: 10px;
+  height: 30px;
   width: 100%;
 }
 
 #share-container p, #share-container a {
   float: left;
-  margin: 10px auto;
+  margin: 0 auto;
   padding-left: 10px;
+  padding-right: 10px;
 }
 
 #threejs-container {
