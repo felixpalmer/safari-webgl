@@ -1,37 +1,34 @@
-define( ["three", "camera", "controls", "cubeCamera", "geometry", "light", "material", "renderer", "scene"],
-function ( THREE, camera, controls, cubeCamera, geometry, light, material, renderer, scene ) {
+define( ["three", "camera", "container", "controls", "geometry", "light", "material", "renderer", "scene"],
+function ( THREE, camera, container, controls, geometry, light, material, renderer, scene ) {
   var app = {
+    bearing: 0.3 * Math.PI,
     clock: new THREE.Clock( true ),
+    mouse: { x: 100, y: 200 },
     init: function () {
       app.clock.start();
-
-      // Create skybox
-      app.sky = new THREE.Mesh( new THREE.SphereGeometry( 500, 60, 40 ), material.sky );
-      app.sky.scale.x = -1;
-      scene.add( app.sky );
 
       // Table to place compass on
       app.table = new THREE.Mesh( geometry.table, material.wood );
       app.table.receiveShadow = true;
+      app.table.position.x = -50;
+      app.table.position.y = 50;
       app.table.position.z = -geometry.chromeRadius;
       scene.add( app.table );
 
       // Put together compass
-      // TODO refactor into component
       app.ring = new THREE.Mesh( geometry.ring, material.chrome );
       app.ring.castShadow = true;
-      //app.ring.position.z = 5;
       app.ring.receiveShadow = true;
       scene.add( app.ring );
 
       app.blob = new THREE.Mesh( geometry.blob, material.chrome );
-      app.blob.position.x = 13;
+      app.blob.position.x = geometry.compassRadius;
       app.blob.castShadow = true;
       app.blob.receiveShadow = true;
       scene.add( app.blob );
       
       app.smallRing = new THREE.Mesh( geometry.smallRing, material.chrome );
-      app.smallRing.position.x = 14.7;
+      app.smallRing.position.x = geometry.compassRadius + 1.2;
       app.smallRing.castShadow = true;
       app.smallRing.receiveShadow = true;
       scene.add( app.smallRing );
@@ -43,12 +40,12 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       scene.add( app.backplate );
 
       app.arrowRed = new THREE.Mesh( geometry.arrow, material.flatRed );
-      app.arrowRed.rotation.z = 0.3 * Math.PI;
+      app.arrowRed.rotation.z = app.bearing;
       app.arrowRed.position.z = 0.2;
       app.arrowRed.castShadow = true;
       scene.add( app.arrowRed );
       app.arrowWhite = new THREE.Mesh( geometry.arrow, material.flatWhite );
-      app.arrowWhite.rotation.z = 1.3 * Math.PI;
+      app.arrowWhite.rotation.z = app.bearing + Math.PI;
       app.arrowWhite.position.z = 0.2;
       app.arrowWhite.castShadow = true;
       scene.add( app.arrowWhite );
@@ -58,8 +55,8 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
       scene.add( app.cover );
 
       app.centerBlob = new THREE.Mesh( geometry.blob, material.flatWhite );
-      app.centerBlob.position.z = 0.28;
-      app.centerBlob.scale = new THREE.Vector3( 0.6, 0.6, 0.25 );
+      app.centerBlob.position.z = 0.33;
+      app.centerBlob.scale = new THREE.Vector3( 0.7, 0.7, 0.35 );
       app.centerBlob.castShadow = true;
       scene.add( app.centerBlob );
       
@@ -73,11 +70,11 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
           triangle = new THREE.Mesh( geometry.triangle, material.flatWhite );
         } else {
           // All other triangles
-          scale = n % 2 ? 0.5 : 0.8;
+          scale = n % 2 ? 0.4 : 0.8;
           triangle = new THREE.Mesh( geometry.triangle, material.flatGrey );
         }
-        triangle.position.x = -radius * Math.cos( theta );
-        triangle.position.y = -radius * Math.sin( theta );
+        triangle.position.x = -( radius + scale / 2) * Math.cos( theta );
+        triangle.position.y = -( radius + scale / 2) * Math.sin( theta );
         triangle.rotation.z = theta;
         triangle.position.z = 0.01;
         triangle.scale = new THREE.Vector3( scale, 0.33 * scale, scale );
@@ -101,6 +98,8 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
         }
         circle.position.z = 0.005;
         text.position.z = 0.01;
+        circle.receiveShadow = true;
+        text.receiveShadow = true;
         scene.add( circle );
         scene.add( text );
       }
@@ -120,7 +119,7 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
         triangle.position.x = radius * Math.cos( theta );
         triangle.position.y = radius * Math.sin( theta );
         triangle.rotation.z = theta;
-        triangle.position.z = 0.002;
+        triangle.position.z = 0.015;
         triangle.scale = new THREE.Vector3( scale, 0.33 * scale, scale );
         triangle.receiveShadow = true;
         scene.add( triangle );
@@ -140,23 +139,45 @@ function ( THREE, camera, controls, cubeCamera, geometry, light, material, rende
         smallText.rotation.z = theta;
         scene.add( smallText );
       }
+      var creditText = new THREE.Mesh( geometry.text( "@pheeelicks" ), material.flatGrey );
+      creditText.position.y = -3.7;
+      creditText.position.z = 0.1;
+      creditText.scale = new THREE.Vector3( 0.1, 0.1, 0.1 );
+      scene.add( creditText );
+
+      container.onclick = function () {
+        app.bearing = 2 * Math.PI * Math.random();
+      };
+      container.addEventListener( 'mousemove', function( e ) {
+        app.mouse = {
+          x: e.clientX - container.offsetWidth / 2,
+          y: e.clientY - container.offsetHeight / 2
+        };
+      } );
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
-      controls.update();
+      //controls.update();
 
-      //var time = app.clock.getElapsedTime() ;
-      //light.position.y = 20 * Math.sin ( time / 4 );
-      //light.position.x = 20 * Math.cos ( time / 4 );
+      // Calculate where camera should move to and smoothly pan
+      var camPosition = new THREE.Vector3(
+        - 0.1 * app.mouse.y,
+        - 0.1 * app.mouse.x,
+        10 + 0.07 * Math.abs( app.mouse.y )
+      );
+      camera.position.x += ( camPosition.x - camera.position.x ) * 0.05;
+      camera.position.y += ( camPosition.y - camera.position.y ) * 0.05;
+      camera.position.z += ( camPosition.z  - camera.position.z ) * 0.05;
+      camera.lookAt( scene.position );
 
-      // Hide elements that we don't want in the reflection map
-      app.ring.visible = false;
-      app.table.visible = false;
-      app.sky.visible = true;
-      cubeCamera.updateCubeMap( renderer, scene );
-      app.ring.visible = true;
-      app.table.visible = true;
-      app.sky.visible = false;
+      var time = 0.7 * app.clock.getElapsedTime() ;
+      light.position.y = 3 * Math.sin ( 0.71 * time );
+      light.position.x = 1 * Math.cos ( 1.21 * time );
+      light.position.x = 30 - 3 * Math.cos ( 1.21 * time );
+
+      var delta = app.arrowRed.rotation.z - app.bearing;
+      app.arrowRed.rotation.z -= 0.03 * delta;
+      app.arrowWhite.rotation.z -= 0.03 * delta;
 
       renderer.render( scene, camera );
     }

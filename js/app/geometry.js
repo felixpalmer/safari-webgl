@@ -1,12 +1,12 @@
 define( ["three", "gentilisBold"], function ( THREE ) {
   var plateRadius = 10.8;
-  var rimRadius = 0.4;
-  var chromeRadius = 1.2;
+  var rimRadius = 0.7;
+  var chromeRadius = 1.6;
 
   // Define cross section of ring using a path
   var ringPath = new THREE.Path();
   ringPath.moveTo( plateRadius - 0.2, 0.2 );
-  ringPath.lineTo( plateRadius + rimRadius, 0 );
+  ringPath.lineTo( plateRadius + rimRadius, 0.1 );
   //ringPath.lineTo( plateRadius - 1, 4 );
   ringPath.absarc( plateRadius + rimRadius + chromeRadius, 0,
                    chromeRadius,
@@ -73,6 +73,7 @@ define( ["three", "gentilisBold"], function ( THREE ) {
     arrow: arrow,
     circle: new THREE.CircleGeometry( 1.4, 32 ),
     chromeRadius: chromeRadius,
+    compassRadius: 2 * chromeRadius + plateRadius + rimRadius,
     cover: new THREE.SphereGeometry( plateRadius + rimRadius, 32, 16, 0, Math.PI ),
     flatRing: flatRing,
     flatRingRadius: flatRingRadius,
@@ -80,8 +81,9 @@ define( ["three", "gentilisBold"], function ( THREE ) {
     blob: new THREE.SphereGeometry( 1, 32, 32 ),
     plateRadius: plateRadius,
     ring: ring,
+    rimRadius: rimRadius,
     smallRing: new THREE.TorusGeometry( 1.3, 0.1, 16, 32 ),
-    table: new THREE.PlaneGeometry( 100, 100 ),
+    table: new THREE.PlaneGeometry( 600, 600 ),
     text: createText,
     triangle: triangle
   };

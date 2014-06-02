@@ -1,4 +1,4 @@
-define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "texture"], function ( THREE, cubeCamera, simpleVert, simpleFrag, texture ) {
+define( ["three", "shader!simple.vert", "shader!simple.frag", "texture"], function ( THREE, simpleVert, simpleFrag, texture ) {
   var flatWithColor = function( color ) {
     return new THREE.MeshPhongMaterial( {
       color: color,
@@ -17,7 +17,7 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
 
       bumpMap: texture.brushed,
       bumpScale: 0.003,
-      envMap: cubeCamera.renderTarget,
+      envMap: texture.sky,
       metal: true,
       shininess: 15
     } ),
@@ -34,11 +34,11 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
       transparent: true,
 
       combine: THREE.MixOperation,
-      envMap: cubeCamera.renderTarget,
+      envMap: texture.sky,
       reflectivity: 0.29,
       shininess: 190
     } ),
-    flatBlue: flatWithColor( new THREE.Color( "#0091cb" ) ),
+    flatBlue: flatWithColor( new THREE.Color( "#1557fb" ) ),
     flatGrey: flatWithColor( new THREE.Color( "#979797" ) ),
     flatRed: flatWithColor( new THREE.Color( "#ff2700" ) ),
     flatWhite: flatWithColor( new THREE.Color( "#ffffff" ) ),
@@ -56,8 +56,13 @@ define( ["three", "cubeCamera", "shader!simple.vert", "shader!simple.frag", "tex
     }),
     wire: new THREE.MeshBasicMaterial( { wireframe: true } ),
     wood: new THREE.MeshPhongMaterial( {
-      shininess: 0,
-      map: texture.wood
+      ambient: new THREE.Color( "#000000" ),
+      emissive: new THREE.Color( "#000000" ),
+      specular: new THREE.Color( "#b15712" ),
+      shininess: 10,
+      map: texture.wood,
+      bumpScale: 0.06,
+      bumpMap: texture.wood
     } ),
     world: new THREE.MeshBasicMaterial( { map: texture.world } )
   };
