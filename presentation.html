@@ -14,6 +14,19 @@
               right:0;
               position:absolute;
           }
+          #threejs-container {
+              background: #000;
+              color: #666;
+              height: 100%;
+              width: 100%;
+            }
+
+          #threejs-container canvas {
+              position: absolute;
+              left: 0;
+              top: 0;
+              right: 0;
+          }
         </style>
 </head>
 <body class="list">
@@ -24,7 +37,7 @@
 	<section class="slide cover fullscreen" id="Cover"><div>
 		<h2>Safari in Safari - An Introduction to 3D content on the Web</h2>
 		<p>Felix Palmer | @pheeelicks | www.pheelicks.com</p>
-		<img src="pictures/cover.png" alt="">
+            <div id="threejs-container">Loading...</div>
 		<!--
 			To apply styles to the certain slides
 			set slide ID to get needed elements
@@ -69,7 +82,7 @@
 	</div></section>
 	<div class="progress"><div></div></div>
 	<script src="shower/shower.min.js"></script>
-    <script src="../js/config.js"></script>
-    <script data-main="../../main" src="../js/require.js"></script>
+    <script src="js/config.js"></script>
+    <script data-main="../presentation" src="js/require.js"></script>
 </body>
 </html>

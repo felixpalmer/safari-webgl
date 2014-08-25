@@ -157,6 +157,9 @@ function ( THREE, camera, container, controls, geometry, light, material, render
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
+      app.draw();
+    },
+    draw: function () {
       //controls.update();
 
       // Calculate where camera should move to and smoothly pan
