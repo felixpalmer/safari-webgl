@@ -28,6 +28,25 @@
               top: 0;
               right: 0;
           }
+          .fullscreen h2 {
+              margin:30px 0 0;
+              color:#FFF;
+              text-align:center;
+              font-size:70px;
+          }
+          .fullscreen p {
+              margin:10px 0 0;
+              text-align:center;
+              color:#FFF;
+              font-style:italic;
+              font-size:20px;
+          }
+          .fullscreen p a {
+              color:#FFF;
+          }
+          .fullscreen img {
+              height:100%;
+          }
         </style>
 </head>
 <body class="list">
@@ -43,36 +62,18 @@
 			To apply styles to the certain slides
 			set slide ID to get needed elements
 			-->
-		<style>
-			.fullscreen h2 {
-				margin:30px 0 0;
-				color:#FFF;
-				text-align:center;
-				font-size:70px;
-				}
-			.fullscreen p {
-				margin:10px 0 0;
-				text-align:center;
-				color:#FFF;
-				font-style:italic;
-				font-size:20px;
-				}
-            .fullscreen p a {
-                color:#FFF;
-                }
-            .fullscreen img {
-                height:100%;
-                }
-		</style>
 	</div></section>
 	<section class="slide"><div>
 		<h2>Talk overview</h2>
 		<ol>
-			<li>Blah</li>
-			<li>Blah</li>
-			<li>Blah</li>
-			<li>Blah</li>
-			<li>Blah</li>
+			<li>Why WebGL?</li>
+			<li>THREE.js - the macro and the micro</li>
+			<li>Structuring code</li>
+			<li>Setting up a scene (amd-three.js)</li>
+			<li>Geometry</li>
+			<li>Materials</li>
+			<li>Camera and controls</li>
+			<li>Shaders</li>
 		</ol>
         <img class="right" src="pictures/sidebar3.png" alt="">
 	</div></section>
@@ -81,7 +82,7 @@
 		<p>Felix Palmer | @pheeelicks | www.pheelicks.com</p>
 		<img src="pictures/cover2.png" alt="">
 	</div></section>
-	<div class="progress"><div></div></div>
+	<div class="progress"></div>
 	<script src="shower/shower.min.js"></script>
     <script src="js/config.js"></script>
     <script data-main="../presentation" src="js/require.js"></script>
