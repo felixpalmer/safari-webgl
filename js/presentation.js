@@ -7,4 +7,5 @@ require( ['detector', 'app', 'container'], function ( Detector, app, container )
 
   app.init();
   app.draw();
+  //app.animate();
 } );
