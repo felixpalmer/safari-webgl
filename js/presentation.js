@@ -11,6 +11,7 @@ require( ['detector', 'app', 'container'], function ( Detector, app, container )
   var tick = function() {
     window.requestAnimationFrame( tick );
     if ( shower.isSlideMode() && shower.getCurrentSlideNumber() === 0 ) {
+      app.spin = true;
       app.draw();
     }
   };

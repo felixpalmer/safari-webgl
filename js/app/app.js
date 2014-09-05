@@ -159,6 +159,7 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       window.requestAnimationFrame( app.animate );
       app.draw();
     },
+    spin: false,
     draw: function () {
       //controls.update();
 
@@ -168,6 +169,15 @@ function ( THREE, camera, container, controls, geometry, light, material, render
         - 0.1 * app.mouse.x,
         10 + 0.07 * Math.abs( app.mouse.y )
       );
+      if ( app.spin ) {
+        var t = 0.55 * app.clock.getElapsedTime();
+        var r = 15.0 + 12.0 * Math.cos( 0.3 * t );
+        camPosition = new THREE.Vector3(
+            r * Math.sin( t ),
+            r * Math.cos( t ),
+            ( 12.0 + 5.0 * Math.cos( 1.3 * t ) )
+            );
+      }
       camera.position.x += ( camPosition.x - camera.position.x ) * 0.05;
       camera.position.y += ( camPosition.y - camera.position.y ) * 0.05;
       camera.position.z += ( camPosition.z  - camera.position.z ) * 0.05;
