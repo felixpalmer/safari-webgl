@@ -39,27 +39,6 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       app.backplate.receiveShadow = true;
       scene.add( app.backplate );
 
-      app.arrowRed = new THREE.Mesh( geometry.arrow, material.flatRed );
-      app.arrowRed.rotation.z = app.bearing;
-      app.arrowRed.position.z = 0.2;
-      app.arrowRed.castShadow = true;
-      scene.add( app.arrowRed );
-      app.arrowWhite = new THREE.Mesh( geometry.arrow, material.flatWhite );
-      app.arrowWhite.rotation.z = app.bearing + Math.PI;
-      app.arrowWhite.position.z = 0.2;
-      app.arrowWhite.castShadow = true;
-      scene.add( app.arrowWhite );
-
-      app.cover = new THREE.Mesh( geometry.cover, material.cover );
-      app.cover.scale = new THREE.Vector3( 1, 1, 0.1 );
-      scene.add( app.cover );
-
-      app.centerBlob = new THREE.Mesh( geometry.blob, material.flatWhite );
-      app.centerBlob.position.z = 0.33;
-      app.centerBlob.scale = new THREE.Vector3( 0.7, 0.7, 0.35 );
-      app.centerBlob.castShadow = true;
-      scene.add( app.centerBlob );
-      
       var radius = geometry.plateRadius - 0.6;
       var theta, triangle, scale;
       for ( var n = 0; n < 72; n++ ) {
@@ -110,6 +89,51 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       flatRing.receiveShadow = true;
       scene.add( flatRing );
 
+      // Needle
+      app.arrowRed = new THREE.Mesh( geometry.arrow, material.flatRed );
+      app.arrowRed.rotation.z = app.bearing;
+      app.arrowRed.position.z = 0.2;
+      app.arrowRed.castShadow = true;
+      scene.add( app.arrowRed );
+      app.arrowWhite = new THREE.Mesh( geometry.arrow, material.flatWhite );
+      app.arrowWhite.rotation.z = app.bearing + Math.PI;
+      app.arrowWhite.position.z = 0.2;
+      app.arrowWhite.castShadow = true;
+      scene.add( app.arrowWhite );
+
+      app.centerBlob = new THREE.Mesh( geometry.blob, material.flatWhite );
+      app.centerBlob.position.z = 0.33;
+      app.centerBlob.scale = new THREE.Vector3( 0.7, 0.7, 0.35 );
+      app.centerBlob.castShadow = true;
+      scene.add( app.centerBlob );
+      
+      app.cover = new THREE.Mesh( geometry.cover, material.cover );
+      app.cover.scale = new THREE.Vector3( 1, 1, 0.1 );
+      scene.add( app.cover );
+      
+      // Get all meshes
+      app.meshes = [];
+      for ( var c in scene.children ) {
+        if ( scene.children.hasOwnProperty( c ) ) {
+          var obj = scene.children[c];
+          if ( obj instanceof THREE.Mesh ) {
+            app.meshes.push( obj );
+          }
+        }
+      }
+      
+
+      //var dz = 0;
+      //for ( var m in app.meshes ) {
+      //  if ( app.meshes.hasOwnProperty( m ) ) {
+      //    var mesh = app.meshes[m];
+      //    dz += 0.1;
+      //    mesh.position.z += dz;
+      //    mesh.rotation.x += 0.02 * dz;
+      //    mesh.material = material.wire;
+      //  }
+      //}
+
       // Triangles pointing out from inner ring
       for ( n = 0; n < 8; n++ ) {
         theta = n * Math.PI / 4;
@@ -154,6 +178,23 @@ function ( THREE, camera, container, controls, geometry, light, material, render
           y: e.clientY - container.offsetHeight / 2
         };
       } );
+    },
+    // Enable showing wireframe version of model
+    wireframe: function( enable ) {
+      for ( var m in app.meshes ) {
+        if ( app.meshes.hasOwnProperty( m ) ) {
+          var mesh = app.meshes[m];
+          if ( enable ) {
+            if ( mesh._material === undefined ) {
+              // Stash away properties we will modify
+              mesh._material = mesh.material;
+            }
+            mesh.material = material.wire;
+          } else { // disable
+            mesh.material = mesh._material;
+          }
+        }
+      }
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
