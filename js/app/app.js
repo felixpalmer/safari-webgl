@@ -191,9 +191,21 @@ function ( THREE, camera, container, controls, geometry, light, material, render
             }
             mesh.material = material.wire;
           } else { // disable
-            mesh.material = mesh._material;
+            if ( mesh._material ) {
+              mesh.material = mesh._material;
+            }
           }
         }
+      }
+    },
+    // Highlight a single object
+    highlight: function( object ) {
+      camera.orbitObject = object;
+      if ( object ) {
+        app.wireframe( true );
+        object.material = object._material;
+      } else {
+        app.wireframe( false );
       }
     },
     animate: function () {
@@ -213,16 +225,26 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       if ( app.spin ) {
         var t = 0.55 * app.clock.getElapsedTime();
         var r = 15.0 + 12.0 * Math.cos( 0.3 * t );
+        if ( camera.orbitObject ) {
+          r = 1.5 * camera.orbitObject.geometry.boundingSphere.radius;
+        }
         camPosition = new THREE.Vector3(
             r * Math.sin( t ),
             r * Math.cos( t ),
-            ( 12.0 + 5.0 * Math.cos( 1.3 * t ) )
+            camera.orbitObject ? r : ( 12.0 + 5.0 * Math.cos( 1.3 * t ) )
             );
+        if ( camera.orbitObject ) {
+          camPosition.add( camera.orbitObject.position );
+        }
       }
       camera.position.x += ( camPosition.x - camera.position.x ) * 0.05;
       camera.position.y += ( camPosition.y - camera.position.y ) * 0.05;
       camera.position.z += ( camPosition.z  - camera.position.z ) * 0.05;
-      camera.lookAt( scene.position );
+      if ( camera.orbitObject ) {
+        camera.lookAt( camera.orbitObject.position );
+      } else {
+        camera.lookAt( scene.position );
+      }
 
       var time = 0.7 * app.clock.getElapsedTime() ;
       light.position.y = 3 * Math.sin ( 0.71 * time );

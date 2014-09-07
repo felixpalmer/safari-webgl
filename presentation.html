@@ -41,15 +41,23 @@
               box-shadow: 2px 2px 10px black;
           }
 
+          .medium {
+              right: 10%;
+              bottom: 3%;
+              height: 50%;
+              width: 80%;
+              box-shadow: 2px 2px 10px black;
+          }
+
           .slide code {
             font-size: 16pt;
           }
 
           .fullscreen h2 {
-              margin:30px 0 0;
+              margin:10px 0 0;
               color:#FFF;
               text-align:center;
-              font-size:70px;
+              font-size:80px;
               text-shadow: 1px 1px 7px #000;
           }
           .fullscreen p {
@@ -57,7 +65,8 @@
               text-align:center;
               color:#FFF;
               font-style:italic;
-              font-size:20px;
+              font-size:30px;
+              text-shadow: 1px 1px 7px #000;
           }
           .fullscreen p a {
               color:#FFF;
@@ -74,7 +83,10 @@
 	</header>
 	<section class="slide cover fullscreen"><div>
 		<h2>Safari in Safari - An Introduction to 3D content on the Web</h2>
+        </br>
 		<p>Felix Palmer | @pheeelicks | www.pheelicks.com</p>
+        </br>
+        <p>Slides: <a href="http://safari-webgl.github.io/presentation.html">http://safari-webgl.github.io/presentation.html</a></p>
         <div id="threejs-container" class="threejs-container">Loading...</div>
 	</div></section>
 	<section class="slide"><div>
@@ -158,9 +170,22 @@
 	<section class="slide"><div>
 		<h2>Project example</h2>
 		<ul>
-			<li>THREE.js boilerplate</li>
+			<li>THREE.js project boilerplate</li>
+			<li>Structuring larger applications by splitting into modules</li>
+			<li>Use Require.js for structure</li>
+            <li>My approach: <a href="https://github.com/felixpalmer/amd-three.js">amd-three.js</a></li>
 		</ul>
         <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+		<h2>Geometry - Sphere</h2>
+        <code>geometry.sphere = new THREE.SphereGeometry( 1, 32, 32 );</code></br>
+        <div class="threejs-container medium">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Geometry - Torus</h2>
+        <code>geometry.ring = new THREE.TorusGeometry( 1.3, 0.1, 16, 32 );</code></br>
+        <div class="threejs-container medium">Loading...</div>
 	</div></section>
 	<section class="slide cover fullscreen" id="Questions"><div>
 		<h2>Questions?</h2>

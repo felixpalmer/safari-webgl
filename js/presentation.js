@@ -28,17 +28,25 @@ require( ['detector', 'app', 'container', 'renderer'], function ( Detector, app,
           rendering = false;
         }
 
+        // Reset scene
+        app.spin = true;
+        app.wireframe( false );
+
         // Set parameters for specific slide
-        if ( slideNumber === 0 ) {
-          app.spin = true;
-        }
         if ( slideNumber === 1 ) {
-          setTimeout( function() { 
+          setTimeout( function() {
             if ( shower.getCurrentSlideNumber() === 1 ) {
               rendering = false;
             }
           }, 1500 );
-          app.spin = false;
+        app.spin = false;
+        }
+        var geomSlideStart = 9; // Bit crappy, should really have better way of referring to slides
+        if ( slideNumber === geomSlideStart ) {
+          app.highlight( app.blob );
+        }
+        if ( slideNumber === geomSlideStart + 1 ) {
+          app.highlight( app.smallRing );
         }
       }
 

@@ -4,6 +4,9 @@ define( ["three"], function ( THREE ) {
   camera.position.y = 10;
   camera.position.z = 33;
   camera.up = new THREE.Vector3( 0, 0, 1 );
+  
+  // Define location to rotate camera around
+  camera.orbitObject = null;
 
   return camera;
 } );
