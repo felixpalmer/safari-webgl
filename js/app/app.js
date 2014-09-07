@@ -10,8 +10,8 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       // Table to place compass on
       app.table = new THREE.Mesh( geometry.table, material.wood );
       app.table.receiveShadow = true;
-      app.table.position.x = -50;
-      app.table.position.y = 50;
+      app.table.position.x = 20;
+      app.table.position.y = -10;
       app.table.position.z = -geometry.chromeRadius;
       scene.add( app.table );
 
@@ -194,8 +194,9 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       app.setMaterial( enable ? material.wire : null );
     },
     // Highlight a single object
-    highlight: function( object ) {
+    highlight: function( object, dist ) {
       camera.orbitObject = object;
+      camera.orbitDist = dist;
       if ( object ) {
         app.wireframe( true );
         object.material = object._material;
@@ -243,7 +244,9 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       if ( app.spin ) {
         var t = 0.55 * app.clock.getElapsedTime();
         var r = 15.0 + 12.0 * Math.cos( 0.3 * t );
-        if ( camera.orbitObject ) {
+        if ( camera.orbitDist ) {
+          r = camera.orbitDist;
+        } else if ( camera.orbitObject ) {
           r = 1.5 * camera.orbitObject.geometry.boundingSphere.radius;
         }
         camPosition = new THREE.Vector3(

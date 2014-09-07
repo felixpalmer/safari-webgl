@@ -70,6 +70,9 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
         if ( slideNumber === materialSlideStart + 2 ) {
           app.setMaterial( material.flatBlue, [app.blob, app.cover, app.ring, app.smallRing] );
         }
+        if ( slideNumber === materialSlideStart + 3 ) {
+          app.highlight( app.table, 7 );
+        }
       }
 
       if ( rendering ) {
