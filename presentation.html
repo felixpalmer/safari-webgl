@@ -36,9 +36,13 @@
           .small {
               right: 2%;
               bottom: 3%;
-              height: 30%;
-              width: 30%;
+              height: 40%;
+              width: 40%;
               box-shadow: 2px 2px 10px black;
+          }
+
+          .slide code {
+            font-size: 16pt;
           }
 
           .fullscreen h2 {
@@ -129,14 +133,33 @@
         <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
 	<section class="slide"><div>
-		<h2>Hello World</h2>
-        <pre>
-           var geom = new THREE.PlaneGeometry( 600, 600 );</br>
-            var material = new THREE.MeshBasicMaterial();</br>
-            var mesh = new THREE.Mesh( geom, material );</br>
-            mesh.position.x = -50;</br>
-            scene.add( mesh );</br>
-        </pre>
+		<h2>Rendering a Scene</h2>
+		<ul>
+            <li>To actually show something on screen, need a:</li>
+            <ul>
+                <li><strong>Camera</strong> to view the <strong>Scene</strong> through</li>
+                <li><strong>Renderer</strong> to render into a canvas in the DOM</li>
+            </ul>
+		</ul>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+		<h2>Hello (3D) World</h2>
+        <code>var geom = new THREE.PlaneGeometry( 600, 600 );</code></br>
+        <code>var material = new THREE.MeshBasicMaterial();</code></br>
+        <code>var mesh = new THREE.Mesh( geom, material );</code></br>
+        <code>scene.add( mesh );</code></br>
+        </br>
+        <code>var camera = new THREE.PerspectiveCamera( 70 );</code></br>
+        <code>scene.add( camera );</code></br>
+        <code>var renderer = new THREE.WebGLRenderer();</code></br>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+		<h2>Project example</h2>
+		<ul>
+			<li>THREE.js boilerplate</li>
+		</ul>
         <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
 	<section class="slide cover fullscreen" id="Questions"><div>

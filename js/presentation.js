@@ -33,7 +33,7 @@ require( ['detector', 'app', 'container', 'renderer'], function ( Detector, app,
           app.spin = true;
         }
         if ( slideNumber === 1 ) {
-          setTimeout( function() { rendering = false; }, 1500 );
+          setTimeout( function() { rendering = ( slideNumber !== 1 ); }, 1500 );
           app.spin = false;
         }
       }
