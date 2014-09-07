@@ -65,7 +65,10 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
         }
         if ( slideNumber === materialSlideStart + 1 ) {
           //app.explode( true );
-          app.setMaterial( material.basic, [app.ring, app.cover] );
+          app.setMaterial( material.basic, [app.blob, app.cover, app.ring, app.smallRing] );
+        }
+        if ( slideNumber === materialSlideStart + 2 ) {
+          app.setMaterial( material.flatBlue, [app.blob, app.cover, app.ring, app.smallRing] );
         }
       }
 
