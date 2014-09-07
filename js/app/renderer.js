@@ -5,13 +5,26 @@ define( ["three", "container"], function ( THREE, container ) {
   renderer.autoClear = false;
   renderer.shadowMapEnabled = true;
   renderer.shadowMapType = THREE.PCFShadowMap;
-  container.appendChild( renderer.domElement );
 
-  var updateSize = function () {
-    renderer.setSize( container.offsetWidth, container.offsetHeight );
+  // Allow changing of DOM element for renderer
+  renderer.setContainer = function( newContainer ) {
+    try {
+      _container.removeChild( renderer.domElement );
+    } catch ( e ) {
+
+    }
+    _container = newContainer;
+    _container.appendChild( renderer.domElement );
   };
-  window.addEventListener( 'resize', updateSize, false );
-  updateSize();
+  var _container = container;
+  renderer.setContainer( _container );
+
+  // Update size on window resize
+  renderer.updateSize = function () {
+    renderer.setSize( _container.offsetWidth, _container.offsetHeight );
+  };
+  window.addEventListener( 'resize', renderer.updateSize, false );
+  renderer.updateSize();
 
   return renderer;
 } );
