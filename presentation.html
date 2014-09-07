@@ -294,11 +294,16 @@
         <img class="tiny" src="js/textures/sky.jpg">
 	</div></section>
 	<section class="slide"><div>
-		<h2>Blending</h2>
+		<h2>Transparency - Blending</h2>
         <code>new THREE.MeshPhongMaterial( {</code></br>
+        <code>blending: THREE.AdditiveBlending,</code></br>
+        <code>opacity: 0.95,</code></br>
+        <code>shading: THREE.SmoothShading,</code></br>
+        <code>transparent: true,</code></br>
+        <code>combine: THREE.MixOperation,</code></br>
         <code>envMap: texture.sky,</code></br>
+        <code>reflectivity: 0.29,</code></br>
         <code>...</code></br>
-        <code>} ),</code></br>
         <div class="threejs-container small">Loading...</div>
 	</div></section>
 	<section class="slide cover fullscreen" id="Questions"><div>

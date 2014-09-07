@@ -28,13 +28,13 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
         if ( c ) {
           rendering = true;
           renderer.setContainer( c );
+          c.removeEventListener( 'mouseover', onHover );
+          c.addEventListener( 'mouseover', onHover );
+          c.removeEventListener( 'mouseout', onHover );
+          c.addEventListener( 'mouseout', onHover );
         } else {
           rendering = false;
         }
-        c.removeEventListener( 'mouseover', onHover );
-        c.addEventListener( 'mouseover', onHover );
-        c.removeEventListener( 'mouseout', onHover );
-        c.addEventListener( 'mouseout', onHover );
 
         // Reset scene
         app.spin = true;
@@ -45,12 +45,7 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
 
         // Set parameters for specific slide
         if ( slideNumber === 1 ) {
-          setTimeout( function() {
-            if ( shower.getCurrentSlideNumber() === 1 ) {
-              rendering = false;
-            }
-          }, 1500 );
-        app.spin = false;
+          app.spin = false;
         }
         var geomSlideStart = 9; // Bit crappy, should really have better way of referring to slides
         if ( slideNumber === geomSlideStart ) {
