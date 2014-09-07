@@ -1,6 +1,6 @@
 /*global shower*/
 // Start the app
-require( ['detector', 'app', 'container', 'renderer'], function ( Detector, app, container, renderer ) {
+require( ['detector', 'app', 'container', 'material', 'renderer'], function ( Detector, app, container, material, renderer ) {
   if ( ! Detector.webgl ) {
     Detector.addGetWebGLMessage();
     container.innerHTML = "";
@@ -32,6 +32,7 @@ require( ['detector', 'app', 'container', 'renderer'], function ( Detector, app,
         app.spin = true;
         app.wireframe( false );
         app.highlight( null );
+        //app.explode( false );
 
         // Set parameters for specific slide
         if ( slideNumber === 1 ) {
@@ -57,6 +58,14 @@ require( ['detector', 'app', 'container', 'renderer'], function ( Detector, app,
         }
         if ( slideNumber === geomSlideStart + 4 ) {
           app.highlight( app.label );
+        }
+        var materialSlideStart = 14;
+        if ( slideNumber === materialSlideStart ) {
+          app.wireframe( true );
+        }
+        if ( slideNumber === materialSlideStart + 1 ) {
+          //app.explode( true );
+          app.setMaterial( material.basic, [app.ring, app.cover] );
         }
       }
 

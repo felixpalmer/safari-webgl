@@ -125,18 +125,6 @@ function ( THREE, camera, container, controls, geometry, light, material, render
         }
       }
       
-
-      //var dz = 0;
-      //for ( var m in app.meshes ) {
-      //  if ( app.meshes.hasOwnProperty( m ) ) {
-      //    var mesh = app.meshes[m];
-      //    dz += 0.1;
-      //    mesh.position.z += dz;
-      //    mesh.rotation.x += 0.02 * dz;
-      //    mesh.material = material.wire;
-      //  }
-      //}
-
       // Triangles pointing out from inner ring
       for ( n = 0; n < 8; n++ ) {
         theta = n * Math.PI / 4;
@@ -183,16 +171,17 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       } );
     },
     // Enable showing wireframe version of model
-    wireframe: function( enable ) {
-      for ( var m in app.meshes ) {
-        if ( app.meshes.hasOwnProperty( m ) ) {
-          var mesh = app.meshes[m];
-          if ( enable ) {
+    setMaterial: function( mat, objects ) {
+      var iterObjects = objects ? objects : app.meshes;
+      for ( var m in iterObjects ) {
+        if ( iterObjects.hasOwnProperty( m ) ) {
+          var mesh = iterObjects[m];
+          if ( mat ) {
             if ( mesh._material === undefined ) {
               // Stash away properties we will modify
               mesh._material = mesh.material;
             }
-            mesh.material = material.wire;
+            mesh.material = mat;
           } else { // disable
             if ( mesh._material ) {
               mesh.material = mesh._material;
@@ -200,6 +189,9 @@ function ( THREE, camera, container, controls, geometry, light, material, render
           }
         }
       }
+    },
+    wireframe: function( enable ) {
+      app.setMaterial( enable ? material.wire : null );
     },
     // Highlight a single object
     highlight: function( object ) {
@@ -209,6 +201,29 @@ function ( THREE, camera, container, controls, geometry, light, material, render
         object.material = object._material;
       } else {
         app.wireframe( false );
+      }
+    },
+    explode: function ( explode ) {
+      var dz = 0;
+      for ( var m in app.meshes ) {
+        if ( app.meshes.hasOwnProperty( m ) ) {
+          var mesh = app.meshes[m];
+          if ( explode ) {
+            if ( mesh.position._z === undefined ) {
+              mesh.position._z = mesh.position.z;
+              mesh.rotation._x = mesh.rotation.x;
+            }
+            dz += 0.1;
+            mesh.position.z += dz;
+            mesh.rotation.x += 0.02 * dz;
+          } else {
+            if ( mesh.position._z !== undefined ) {
+              mesh.position.z = mesh.position._z;
+              mesh.rotation.x = mesh.rotation._x;
+            }
+          }
+          mesh.updateMatrix();
+        }
       }
     },
     animate: function () {

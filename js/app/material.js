@@ -10,6 +10,7 @@ define( ["three", "shader!simple.vert", "shader!simple.frag", "texture"], functi
   };
 
   return {
+    basic: new THREE.MeshBasicMaterial( { color: "#00ff00" } ),
     chrome: new THREE.MeshPhongMaterial( {
       color: new THREE.Color( "#c4c4d4" ),
       emissive: new THREE.Color( "#121515" ),
