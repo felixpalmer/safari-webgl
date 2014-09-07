@@ -252,7 +252,7 @@ function ( THREE, camera, container, controls, geometry, light, material, render
         camPosition = new THREE.Vector3(
             r * Math.sin( t ),
             r * Math.cos( t ),
-            camera.orbitObject ? r : ( 12.0 + 5.0 * Math.cos( 1.3 * t ) )
+            camera.orbitObject ? 0.4 * r : ( 12.0 + 5.0 * Math.cos( 1.3 * t ) )
             );
         if ( camera.orbitObject ) {
           camPosition.add( camera.orbitObject.position );

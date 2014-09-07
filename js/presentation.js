@@ -6,6 +6,10 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
     container.innerHTML = "";
   }
 
+  var onHover = function() {
+    renderer.setContainer( this );
+    console.log( 'pip' );
+  };
   app.init();
   app.draw();
   var lastSlideNumber = -1;
@@ -27,11 +31,16 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
         } else {
           rendering = false;
         }
+        c.removeEventListener( 'mouseover', onHover );
+        c.addEventListener( 'mouseover', onHover );
+        c.removeEventListener( 'mouseout', onHover );
+        c.addEventListener( 'mouseout', onHover );
 
         // Reset scene
         app.spin = true;
         app.wireframe( false );
         app.highlight( null );
+        material.chrome.bumpScale = 0.003;
         //app.explode( false );
 
         // Set parameters for specific slide
@@ -72,6 +81,25 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
         }
         if ( slideNumber === materialSlideStart + 3 ) {
           app.highlight( app.table, 7 );
+        }
+        if ( slideNumber === materialSlideStart + 4 ) {
+          var t = 0;
+          var bumpChange = function() {
+            if ( shower.getCurrentSlideNumber() !== materialSlideStart + 4 ) {
+              return;
+            }
+            t += 0.5;
+            material.chrome.bumpScale = 0.002 - 0.002 * Math.cos( Math.PI * t );
+            setTimeout( bumpChange, 1000 );
+          };
+          bumpChange();
+          app.highlight( app.blob );
+        }
+        if ( slideNumber === materialSlideStart + 5 ) {
+          app.highlight( app.ring, 17 );
+        }
+        if ( slideNumber === materialSlideStart + 6 ) {
+          app.setMaterial( material.cover, [app.blob, app.backplate, app.cover, app.ring, app.smallRing] );
         }
       }
 
