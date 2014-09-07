@@ -55,14 +55,10 @@
 		<h1>Safari in Safari - An Introduction to 3D content on the Web</h1>
 		<p>Felix Palmer | @pheeelicks | www.pheelicks.com</p>
 	</header>
-	<section class="slide cover fullscreen" id="Cover"><div>
+	<section class="slide cover fullscreen"><div>
 		<h2>Safari in Safari - An Introduction to 3D content on the Web</h2>
 		<p>Felix Palmer | @pheeelicks | www.pheelicks.com</p>
-            <div id="threejs-container">Loading...</div>
-		<!--
-			To apply styles to the certain slides
-			set slide ID to get needed elements
-			-->
+        <div id="threejs-container">Loading...</div>
 	</div></section>
 	<section class="slide"><div>
 		<h2>Talk overview</h2>
@@ -77,14 +73,15 @@
 			<li>Shaders</li>
 		</ol>
         <img class="right" src="pictures/sidebar.png" alt="">
+        <div id="threejs-container">Loading...</div>
 	</div></section>
 	<section class="slide"><div>
 		<h2>Why WebGL?</h2>
 		<ol>
 			<li>Accessible 3D for all</li>
 			<li>Support across browsers and mobile increasing all the time</li>
-			<li>Combination of JavaScript & GLSL very effective</li>
-			<li>Future of programming: GPU & CPU</li>
+			<li>Combination of JavaScript &amp; GLSL very effective</li>
+			<li>Future of programming: GPU &amp; CPU</li>
             <li>Some examples: <a href="http://threejs.org">http://threejs.org</a></li>
 		</ol>
         <img class="right" src="pictures/sidebar.png" alt="">
@@ -94,7 +91,41 @@
 		<ol>
 			<li></li>
 		</ol>
-		<img src="pictures/cover2.png" alt="">
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+		<h2>THREE.js overview</h2>
+		<ul>
+			<li>High level library for rendering 3D content</li>
+            <li>Base class in 3D world is <strong>Object3D</strong></li>
+            <li>Most of the time we use a <strong>Mesh</strong></li>
+            <li>A <strong>Mesh</strong> is defined by a:</li>
+            <ul>
+                <li><strong>Geometry</strong> - a collection of vertices defining the shape</li>
+                <li><strong>Material</strong> -  defines how the surface is to be drawn</li>
+            </ul>
+		</ul>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+		<h2>Scene graph</h2>
+		<ul>
+            <li><strong>Meshes</strong> can be positioned, rotated, scaled etc</li>
+            <li><strong>Meshes</strong> can be grouped by adding them to an <strong>Object3D</strong></li>
+            <li>To actually display <strong>Object3Ds</strong>, we add them to a <strong>Scene</strong></li>
+		</ul>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+		<h2>Hello World</h2>
+        <pre>
+           var geom = new THREE.PlaneGeometry( 600, 600 );</br>
+            var material = new THREE.MeshBasicMaterial();</br>
+            var mesh = new THREE.Mesh( geom, material );</br>
+            mesh.position.x = -50;</br>
+            scene.add( mesh );</br>
+        </pre>
+        <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
 	<section class="slide cover fullscreen" id="Questions"><div>
 		<h2>Questions?</h2>
