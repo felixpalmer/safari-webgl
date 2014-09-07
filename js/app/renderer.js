@@ -1,5 +1,4 @@
 define( ["three", "camera", "container"], function ( THREE, camera, container ) {
-  container.innerHTML = "";
   var renderer = new THREE.WebGLRenderer( { clearColor: 0x000000 } );
   renderer.sortObjects = false;
   renderer.autoClear = false;
@@ -22,6 +21,7 @@ define( ["three", "camera", "container"], function ( THREE, camera, container ) 
 
     }
     _container = newContainer;
+    _container.innerHTML = "";
     _container.appendChild( renderer.domElement );
 
     // Now that we have new element, need to update the size of renderer and camera aspect
