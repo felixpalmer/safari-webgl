@@ -20,7 +20,7 @@ require( ['detector', 'app', 'container', 'renderer'], function ( Detector, app,
 
         // Check for presence of threejs container in new slide
         var slideId = shower.getSlideHash( slideNumber ).slice( 1 );
-        var c = document.querySelector( "[id='" + slideId + "'] #threejs-container" );
+        var c = document.querySelector( "[id='" + slideId + "'] .threejs-container" );
         if ( c ) {
           rendering = true;
           renderer.setContainer( c );
