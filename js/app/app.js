@@ -79,15 +79,18 @@ function ( THREE, camera, container, controls, geometry, light, material, render
         text.position.z = 0.01;
         circle.receiveShadow = true;
         text.receiveShadow = true;
+        if ( directions[d] === "E" ) {
+          app.label = text;
+        }
         scene.add( circle );
         scene.add( text );
       }
 
       // Inner white ring
-      var flatRing = new THREE.Mesh( geometry.flatRing, material.flatWhite );
-      flatRing.position.z = 0.01;
-      flatRing.receiveShadow = true;
-      scene.add( flatRing );
+      app.flatRing = new THREE.Mesh( geometry.flatRing, material.flatWhite );
+      app.flatRing.position.z = 0.01;
+      app.flatRing.receiveShadow = true;
+      scene.add( app.flatRing );
 
       // Needle
       app.arrowRed = new THREE.Mesh( geometry.arrow, material.flatRed );
@@ -163,11 +166,11 @@ function ( THREE, camera, container, controls, geometry, light, material, render
         smallText.rotation.z = theta;
         scene.add( smallText );
       }
-      var creditText = new THREE.Mesh( geometry.text( "@pheeelicks" ), material.flatGrey );
-      creditText.position.y = -3.7;
-      creditText.position.z = 0.1;
-      creditText.scale = new THREE.Vector3( 0.1, 0.1, 0.1 );
-      scene.add( creditText );
+      app.creditText = new THREE.Mesh( geometry.text( "@pheeelicks" ), material.flatGrey );
+      app.creditText.position.y = -3.7;
+      app.creditText.position.z = 0.1;
+      app.creditText.scale = new THREE.Vector3( 0.1, 0.1, 0.1 );
+      scene.add( app.creditText );
 
       container.onclick = function () {
         app.bearing = 2 * Math.PI * Math.random();

@@ -31,6 +31,7 @@ require( ['detector', 'app', 'container', 'renderer'], function ( Detector, app,
         // Reset scene
         app.spin = true;
         app.wireframe( false );
+        app.highlight( null );
 
         // Set parameters for specific slide
         if ( slideNumber === 1 ) {
@@ -47,6 +48,15 @@ require( ['detector', 'app', 'container', 'renderer'], function ( Detector, app,
         }
         if ( slideNumber === geomSlideStart + 1 ) {
           app.highlight( app.smallRing );
+        }
+        if ( slideNumber === geomSlideStart + 2 ) {
+          app.highlight( app.flatRing );
+        }
+        if ( slideNumber === geomSlideStart + 3 ) {
+          app.highlight( app.ring );
+        }
+        if ( slideNumber === geomSlideStart + 4 ) {
+          app.highlight( app.label );
         }
       }
 
