@@ -67,22 +67,35 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
         }
         var materialSlideStart = 15;
         if ( slideNumber === materialSlideStart ) {
-          app.wireframe( true );
+          var i = 0;
+          var materials = [material.flatBlue, material.chrome, material.flatWhite, material.wood, material.basic, material.cover];
+          var change = function() {
+            if ( shower.getCurrentSlideNumber() !== materialSlideStart ) {
+              return;
+            }
+            i++;
+            app.setMaterial( materials[i%materials.length], [app.ring] );
+            setTimeout( change, 1000 );
+          };
+          change();
         }
         if ( slideNumber === materialSlideStart + 1 ) {
+          app.wireframe( true );
+        }
+        if ( slideNumber === materialSlideStart + 2 ) {
           //app.explode( true );
           app.setMaterial( material.basic, [app.blob, app.cover, app.ring, app.smallRing] );
         }
-        if ( slideNumber === materialSlideStart + 2 ) {
+        if ( slideNumber === materialSlideStart + 3 ) {
           app.setMaterial( material.flatBlue, [app.blob, app.cover, app.ring, app.smallRing] );
         }
-        if ( slideNumber === materialSlideStart + 3 ) {
+        if ( slideNumber === materialSlideStart + 4 ) {
           app.highlight( app.table, 7 );
         }
-        if ( slideNumber === materialSlideStart + 4 ) {
+        if ( slideNumber === materialSlideStart + 5 ) {
           var t = 0;
           var bumpChange = function() {
-            if ( shower.getCurrentSlideNumber() !== materialSlideStart + 4 ) {
+            if ( shower.getCurrentSlideNumber() !== materialSlideStart + 5 ) {
               return;
             }
             t += 0.5;
@@ -92,10 +105,10 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
           bumpChange();
           app.highlight( app.blob );
         }
-        if ( slideNumber === materialSlideStart + 5 ) {
+        if ( slideNumber === materialSlideStart + 6 ) {
           app.highlight( app.ring, 17 );
         }
-        if ( slideNumber === materialSlideStart + 6 ) {
+        if ( slideNumber === materialSlideStart + 7 ) {
           app.setMaterial( material.cover, [app.blob, app.backplate, app.cover, app.ring, app.smallRing] );
         }
       }
