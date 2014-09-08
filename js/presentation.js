@@ -43,6 +43,7 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
         app.explode( false );
 
         // Set parameters for specific slide
+        // Geometries
         if ( slideNumber === 1 ) {
           app.spin = false;
         }
@@ -65,6 +66,7 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
         if ( slideNumber === geomSlideStart + 5 ) {
           app.highlight( app.label );
         }
+        // Materials
         var materialSlideStart = 15;
         if ( slideNumber === materialSlideStart ) {
           var i = 0;
@@ -109,6 +111,14 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
           app.highlight( app.ring, 17 );
         }
         if ( slideNumber === materialSlideStart + 7 ) {
+          app.setMaterial( material.cover, [app.blob, app.backplate, app.cover, app.ring, app.smallRing] );
+        }
+        // Camera control
+        if ( slideNumber === 27 ) {
+          app.spin = false;
+        }
+        // End
+        if ( slideNumber === 29 ) {
           app.setMaterial( material.cover, [app.blob, app.backplate, app.cover, app.ring, app.smallRing] );
         }
       }

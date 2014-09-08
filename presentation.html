@@ -340,14 +340,14 @@
         <h2>Moving the <strong>Camera</strong></h2>
 		<ul>
             <li><strong>Camera</strong> is also an <strong>Object3D</strong>, and can be moved/rotated</li>
+            <li>Code below zooms <strong>Camera</strong> in and out</li>
         </ul>
         <code>app.clock = new THREE.Clock( true );</code></br>
         <code>app.render = function() {</code></br>
         <code>&nbsp;&nbsp;var t = 0.2 * app.clock.getElapsedTime();</code></br>
         <code>&nbsp;&nbsp;var r = 15.0 + 12.0 * Math.cos( 0.3 * t );</code></br>
-        <code>&nbsp;&nbsp;var camPosition = new THREE.Vector3( 0, 0, r );</code></br>
-        <code>&nbsp;&nbsp;camera.position = camPosition;</code></br>
-        <code>};</code></br>
+        <code>&nbsp;&nbsp;camera.position = new THREE.Vector3( 0, 0, r );</code></br>
+        <code>&nbsp;&nbsp;...</code></br>
         <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
 	<section class="slide"><div>
@@ -363,10 +363,47 @@
         <code>};</code></br>
         <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
+	<section class="slide"><div>
+        <h2>Camera Orbiting</h2>
+		<ul>
+            <li>Orbital motion with changing height</li>
+        </ul>
+        <code>var r = 15.0 + 12.0 * Math.cos( 0.3 * t );</code></br>
+        <code>camera.position = new THREE.Vector3(</code></br>
+        <code>&nbsp;&nbsp;r * Math.sin( t ), // Orbital motion</code></br>
+        <code>&nbsp;&nbsp;r * Math.cos( t ), // Orbital motion</code></br>
+        <code>&nbsp;&nbsp;12.0 + 5.0 * Math.cos( 1.3 * t ) // Height</code></br>
+        <code>);</code></br>
+        <div class="threejs-container small-top">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+        <h2>Interactivity</h2>
+		<ul>
+            <li>Can move <strong>Object3D</strong> instances on stage in same way</li>
+            <li>Hook into mouse/keyboard events</li>
+        </ul>
+        <div class="threejs-container medium">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+        <h2>Built-in Control classes</h2>
+		<ul>
+            <li>THREE.js also comes with some pre-made controls, e.g.</li>
+            <ul>
+                <li>FirstPersonControls</li>
+                <li>FlyControls</li>
+                <li>TrackballControls</li>
+            </ul>
+            <li>See <a href="https://github.com/mrdoob/three.js/tree/master/examples/js/controls">/examples/js/controls</a> in THREE.js repo</li>
+        </ul>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
 	<section class="slide cover fullscreen" id="Questions"><div>
 		<h2>Questions?</h2>
+        </br>
 		<p>Felix Palmer | @pheeelicks | www.pheelicks.com</p>
-		<img src="pictures/cover2.png" alt="">
+        </br>
+        <p>Slides: <a href="http://safari-webgl.github.io/presentation.html">http://safari-webgl.github.io/presentation.html</a></p>
+        <div id="threejs-container" class="threejs-container">Loading...</div>
 	</div></section>
 	<div class="progress"></div>
 	<script src="shower/shower.min.js"></script>

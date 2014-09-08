@@ -160,13 +160,13 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       app.creditText.scale = new THREE.Vector3( 0.1, 0.1, 0.1 );
       scene.add( app.creditText );
 
-      container.onclick = function () {
+      renderer.domElement.onclick = function () {
         app.bearing = 2 * Math.PI * Math.random();
       };
-      container.addEventListener( 'mousemove', function( e ) {
+      renderer.domElement.addEventListener( 'mousemove', function( e ) {
         app.mouse = {
-          x: e.clientX - container.offsetWidth / 2,
-          y: e.clientY - container.offsetHeight / 2
+          x: e.clientX - renderer.domElement.offsetWidth / 2,
+          y: e.clientY - renderer.domElement.offsetHeight / 2
         };
       } );
     },
