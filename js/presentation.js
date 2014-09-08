@@ -8,7 +8,6 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
 
   var onHover = function() {
     renderer.setContainer( this );
-    console.log( 'pip' );
   };
   app.init();
   app.draw();
@@ -41,7 +40,7 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
         app.wireframe( false );
         app.highlight( null );
         material.chrome.bumpScale = 0.003;
-        //app.explode( false );
+        app.explode( false );
 
         // Set parameters for specific slide
         if ( slideNumber === 1 ) {
@@ -49,21 +48,24 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
         }
         var geomSlideStart = 9; // Bit crappy, should really have better way of referring to slides
         if ( slideNumber === geomSlideStart ) {
+          app.explode( true );
+        }
+        if ( slideNumber === geomSlideStart + 1) {
           app.highlight( app.blob );
         }
-        if ( slideNumber === geomSlideStart + 1 ) {
+        if ( slideNumber === geomSlideStart + 2 ) {
           app.highlight( app.smallRing );
         }
-        if ( slideNumber === geomSlideStart + 2 ) {
+        if ( slideNumber === geomSlideStart + 3 ) {
           app.highlight( app.flatRing );
         }
-        if ( slideNumber === geomSlideStart + 3 ) {
+        if ( slideNumber === geomSlideStart + 4 ) {
           app.highlight( app.ring );
         }
-        if ( slideNumber === geomSlideStart + 4 ) {
+        if ( slideNumber === geomSlideStart + 5 ) {
           app.highlight( app.label );
         }
-        var materialSlideStart = 14;
+        var materialSlideStart = 15;
         if ( slideNumber === materialSlideStart ) {
           app.wireframe( true );
         }

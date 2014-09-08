@@ -206,24 +206,29 @@ function ( THREE, camera, container, controls, geometry, light, material, render
     },
     explode: function ( explode ) {
       var dz = 0;
+      var mat = new THREE.Matrix4();
+      var mat2 = new THREE.Matrix4();
       for ( var m in app.meshes ) {
         if ( app.meshes.hasOwnProperty( m ) ) {
           var mesh = app.meshes[m];
-          if ( explode ) {
-            if ( mesh.position._z === undefined ) {
-              mesh.position._z = mesh.position.z;
-              mesh.rotation._x = mesh.rotation.x;
-            }
+          // Calcualate matrix transform
+          if ( !mesh._explodeMatrix ) {
             dz += 0.1;
-            mesh.position.z += dz;
-            mesh.rotation.x += 0.02 * dz;
-          } else {
-            if ( mesh.position._z !== undefined ) {
-              mesh.position.z = mesh.position._z;
-              mesh.rotation.x = mesh.rotation._x;
-            }
+            mat.makeTranslation( 0.3 * mesh.position.x, 0.3 * mesh.position.y, dz );
+            mat2.makeRotationX( 0.02 * dz );
+            mat.multiply( mat2 );
+            mesh._explodeMatrix = mat.clone();
           }
-          mesh.updateMatrix();
+          if ( explode && !mesh._exploded ) {
+            // Explode
+            mesh._exploded = true;
+            mesh.applyMatrix( mesh._explodeMatrix );
+          } else if ( !explode && mesh._exploded ) {
+            // Implode
+            mesh._exploded = false;
+            mat.getInverse( mesh._explodeMatrix );
+            mesh.applyMatrix( mat );
+          }
         }
       }
     },
@@ -242,7 +247,7 @@ function ( THREE, camera, container, controls, geometry, light, material, render
         10 + 0.07 * Math.abs( app.mouse.y )
       );
       if ( app.spin ) {
-        var t = 0.55 * app.clock.getElapsedTime();
+        var t = 0.25 * app.clock.getElapsedTime();
         var r = 15.0 + 12.0 * Math.cos( 0.3 * t );
         if ( camera.orbitDist ) {
           r = camera.orbitDist;
