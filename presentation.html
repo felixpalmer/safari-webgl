@@ -336,6 +336,33 @@
         <code>app.tick();</code></br>
         <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
+	<section class="slide"><div>
+        <h2>Moving the <strong>Camera</strong></h2>
+		<ul>
+            <li><strong>Camera</strong> is also an <strong>Object3D</strong>, and can be moved/rotated</li>
+        </ul>
+        <code>app.clock = new THREE.Clock( true );</code></br>
+        <code>app.render = function() {</code></br>
+        <code>&nbsp;&nbsp;var t = 0.2 * app.clock.getElapsedTime();</code></br>
+        <code>&nbsp;&nbsp;var r = 15.0 + 12.0 * Math.cos( 0.3 * t );</code></br>
+        <code>&nbsp;&nbsp;var camPosition = new THREE.Vector3( 0, 0, r );</code></br>
+        <code>&nbsp;&nbsp;camera.position = camPosition;</code></br>
+        <code>};</code></br>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+        <h2>Looking at Objects</h2>
+		<ul>
+            <li>Simplest way set correct <strong>Camera</strong> orientation</li>
+        </ul>
+        <code>app.render = function() {</code></br>
+        <code>&nbsp;&nbsp;...</code></br>
+        <code>&nbsp;&nbsp;camera.position = camPosition;</code></br>
+        <code>&nbsp;&nbsp;camera.up = new THREE.Vector3( 0, 0, 1 );</code></br>
+        <code>&nbsp;&nbsp;camera.lookAt( new THREE.Vector3( 1, 2, 3 ) );</code></br>
+        <code>};</code></br>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
 	<section class="slide cover fullscreen" id="Questions"><div>
 		<h2>Questions?</h2>
 		<p>Felix Palmer | @pheeelicks | www.pheelicks.com</p>
