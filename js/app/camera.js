@@ -1,5 +1,5 @@
 define( ["three"], function ( THREE ) {
-  var camera = new THREE.PerspectiveCamera( 70, 1, 0.01, 5000 );
+  var camera = new THREE.PerspectiveCamera( 70, 1, 0.1, 500 );
   camera.position.x = -18;
   camera.position.y = 10;
   camera.position.z = 33;

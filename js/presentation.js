@@ -43,13 +43,15 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
         app.explode( false );
 
         // Set parameters for specific slide
-        // Geometries
+        // Talk overview
         if ( slideNumber === 1 ) {
           app.spin = false;
         }
+        // Geometries
         var geomSlideStart = 9; // Bit crappy, should really have better way of referring to slides
         if ( slideNumber === geomSlideStart ) {
           app.explode( true );
+          app.spin = false;
         }
         if ( slideNumber === geomSlideStart + 1) {
           app.highlight( app.blob );
