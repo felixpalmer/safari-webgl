@@ -1,0 +1,416 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Safari in Safari</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
+        <style>
+          .slide .right, .slide.cover .right {
+              height: 100%;
+              width: 25%;
+              top: 0;
+              left: auto;
+              right: 0;
+              position: absolute;
+          }
+          .threejs-container {
+              color: grey;
+              font-size: 10pt;
+              position: absolute;
+              right: 0;
+              bottom: 0;
+              height: 100%;
+              width: 100%;
+          }
+
+          .threejs-container canvas {
+              background: black;
+              position: absolute;
+              left: 0;
+              top: 0;
+              right: 0;
+          }
+
+          .tiny {
+              position: absolute;
+              right: 2%;
+              bottom: 3%;
+              height: 200px;
+              width: 200px;
+              box-shadow: 2px 2px 10px black;
+          }
+
+          .small {
+              position: absolute;
+              right: 2%;
+              bottom: 3%;
+              height: 40%;
+              width: 40%;
+              box-shadow: 2px 2px 10px black;
+          }
+
+          .small-top {
+              position: absolute;
+              right: 2%;
+              top: 3%;
+              height: 40%;
+              width: 40%;
+              box-shadow: 2px 2px 10px black;
+          }
+
+          .medium {
+              position: absolute;
+              right: 2%;
+              bottom: 3%;
+              height: 50%;
+              width: 96%;
+              box-shadow: 2px 2px 10px black;
+          }
+
+          .tiny:hover, .small-top:hover, .small:hover, .medium:hover {
+              position: absolute;
+              right: 2%;
+              bottom: 3%;
+              height: 94%;
+              width: 96%;
+          }
+
+          .slide code {
+            font-size: 16pt;
+          }
+
+          .fullscreen h2 {
+              margin:10px 0 0;
+              color:#FFF;
+              text-align:center;
+              font-size:80px;
+              text-shadow: 1px 1px 7px #000;
+          }
+          .fullscreen p {
+              margin:10px 0 0;
+              text-align:center;
+              color:#FFF;
+              font-style:italic;
+              font-size:30px;
+              text-shadow: 1px 1px 7px #000;
+          }
+          .fullscreen p a {
+              color:#FFF;
+          }
+          .fullscreen img {
+              height:100%;
+          }
+        </style>
+</head>
+<body class="list">
+	<header class="caption">
+		<h1>Safari in Safari - An Introduction to 3D content on the Web</h1>
+		<p>Felix Palmer | @pheeelicks | www.pheelicks.com</p>
+	</header>
+	<section class="slide cover fullscreen"><div>
+		<h2>Safari in Safari - An Introduction to 3D content on the Web</h2>
+        </br>
+		<p>Felix Palmer | @pheeelicks | www.pheelicks.com</p>
+        </br>
+        <p>Slides: <a href="http://safari-webgl.github.io/presentation.html">http://safari-webgl.github.io/presentation.html</a></p>
+        <div id="threejs-container" class="threejs-container">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Talk overview</h2>
+		<ol>
+			<li>Why WebGL?</li>
+			<li>THREE.js - introduction</li>
+			<li>Structuring code</li>
+			<li>Geometry</li>
+			<li>Materials</li>
+			<li>Interactivity</li>
+		</ol>
+        <div class="threejs-container small">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Why WebGL?</h2>
+		<ol>
+			<li>Accessible 3D for all</li>
+			<li>Support across browsers and mobile increasing all the time</li>
+			<li>Combination of JavaScript &amp; GLSL very effective</li>
+			<li>Future of programming: GPU &amp; CPU</li>
+            <li>Some examples: <a href="http://threejs.org">http://threejs.org</a></li>
+		</ol>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+		<h2>THREE.js - The macro and the micro</h2>
+		<ul>
+			<li>3D graphics is pretty involved. THREE.js let's you:</li>
+            <ul>
+                <li>focus on the high level content (JavaScript land)</li>
+                <li>...with the power to show high-performance (GLSL land)</li>
+                <li>...while handling all the fiddly bits in between</li>
+            </ul>
+		</ul>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+		<h2>THREE.js overview</h2>
+		<ul>
+			<li>High level library for rendering 3D content</li>
+            <li>Base class in 3D world is <strong>Object3D</strong></li>
+            <li>Most of the time we use a <strong>Mesh</strong></li>
+            <li>A <strong>Mesh</strong> is defined by a:</li>
+            <ul>
+                <li><strong>Geometry</strong> - a collection of vertices defining the shape</li>
+                <li><strong>Material</strong> -  defines how the surface is to be drawn</li>
+            </ul>
+		</ul>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+		<h2>Scene graph</h2>
+		<ul>
+            <li><strong>Meshes</strong> can be positioned, rotated, scaled etc</li>
+            <li><strong>Meshes</strong> can be grouped by adding them to an <strong>Object3D</strong></li>
+            <li>To actually display <strong>Object3Ds</strong>, we add them to a <strong>Scene</strong></li>
+		</ul>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+		<h2>Rendering a Scene</h2>
+		<ul>
+            <li>To actually show something on screen, need a:</li>
+            <ul>
+                <li><strong>Camera</strong> to view the <strong>Scene</strong> through</li>
+                <li><strong>Renderer</strong> to render into a canvas in the DOM</li>
+            </ul>
+		</ul>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+		<h2>Hello (3D) World</h2>
+        <code>var geom = new THREE.PlaneGeometry( 600, 600 );</code></br>
+        <code>var material = new THREE.MeshBasicMaterial();</code></br>
+        <code>var mesh = new THREE.Mesh( geom, material );</code></br>
+        <code>scene.add( mesh );</code></br>
+        </br>
+        <code>var camera = new THREE.PerspectiveCamera( 70 );</code></br>
+        <code>scene.add( camera );</code></br>
+        <code>var renderer = new THREE.WebGLRenderer();</code></br>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+		<h2>Project example</h2>
+		<ul>
+			<li>THREE.js project boilerplate</li>
+			<li>Structuring larger applications by splitting into modules</li>
+			<li>Use Require.js for structure</li>
+            <li>My approach: <a href="https://github.com/felixpalmer/amd-three.js">amd-three.js</a></li>
+		</ul>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+		<h2>Geometry</h2>
+		<ul>
+            <li><strong>Scene</strong> is composed of a collection of objects</li>
+            <li>Each has a <strong>Geometry</strong></li>
+            <li>These can be shared, e.g. needle is actually 2 <strong>Geometries</strong></li>
+        </ul>
+        <div class="threejs-container small">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Geometry - Sphere</h2>
+        <code>new THREE.SphereGeometry( 1, 32, 32 );</code></br>
+        <div class="threejs-container medium">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Geometry - Torus</h2>
+        <code>new THREE.TorusGeometry( 1.3, 0.1, 16, 32 );</code></br>
+        <div class="threejs-container medium">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Geometry - Lathe</h2>
+        <code>var flatRingRadius = 3.33;</code></br>
+        <code>var flatRingPoints = [</code></br>
+        <code>&nbsp;&nbsp;new THREE.Vector3( flatRingRadius + 0.1, 0, 0 ),</code></br>
+        <code>&nbsp;&nbsp;new THREE.Vector3( flatRingRadius - 0.1, 0, 0 )</code></br>
+        <code>];</code></br>
+        <code>var flatRing = new THREE.LatheGeometry( flatRingPoints, 64 );</code></br>
+        <div class="threejs-container small-top">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Geometry - Path-based</h2>
+        <code>var path = new THREE.Path();</code></br>
+        <code>ringPath.moveTo( 0, 0 );</code></br>
+        <code>ringPath.lineTo( 1, 0 );</code></br>
+        <code>ringPath.absarc( 1, 0, 1, 0, Math.PI, true )</code></br>
+        <code>...</code></br>
+        <code>var points = ringPath.getPoints( 24, true );</code></br>
+        <code>var ring = new THREE.LatheGeometry( vectors, 128 );</code></br>
+        <div class="threejs-container small-top">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Geometry - Text</h2>
+        <code>new THREE.TextGeometry( "E", { size: 2, height: 0.04 } );</code></br>
+        <div class="threejs-container medium">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Material</h2>
+		<ul>
+            <li>Each object in the <strong>Scene</strong> also has a <strong>Material</strong></li>
+            <li>As with <strong>Geometries</strong>, <strong>Materials</strong> can be shared</li>
+        </ul>
+        <div class="threejs-container small">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Material - Wireframe</h2>
+        <code>wire = new THREE.MeshBasicMaterial( { wireframe: true } )</code></br>
+        <div class="threejs-container medium">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Material - Basic</h2>
+        <code>basic = new THREE.MeshBasicMaterial( { color: "#00ff00" } )</code></br>
+        <div class="threejs-container medium">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>MeshPhongMaterial</h2>
+        <code>new THREE.MeshPhongMaterial( {</code></br>
+        <code>&nbsp;&nbsp;color: new THREE.Color( "#1557fb" ),</code></br>
+        <code>&nbsp;&nbsp;emissive: new THREE.Color( "#232323" ),</code></br>
+        <code>&nbsp;&nbsp;specular: new THREE.Color( "#ccccff" ),</code></br>
+        <code>&nbsp;&nbsp;shading: THREE.FlatShading,</code></br>
+        <code>&nbsp;&nbsp;shininess: 40</code></br>
+        <code>} );</code></br>
+        <div class="threejs-container small-top">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Textured Phong</h2>
+        <code>new THREE.MeshPhongMaterial( {</code></br>
+        <code>&nbsp;&nbsp;map: texture.wood,</code></br>
+        <code>&nbsp;&nbsp;ambient: new THREE.Color( "#000000" ),</code></br>
+        <code>&nbsp;&nbsp;emissive: new THREE.Color( "#000000" ),</code></br>
+        <code>&nbsp;&nbsp;specular: new THREE.Color( "#b15712" ),</code></br>
+        <code>&nbsp;&nbsp;shininess: 10</code></br>
+        <code>} ),</code></br>
+        <div class="threejs-container small-top">Loading...</div>
+        <img class="tiny" src="js/textures/wood.jpg">
+	</div></section>
+	<section class="slide"><div>
+		<h2>Bump maps</h2>
+        <code>new THREE.MeshPhongMaterial( {</code></br>
+        <code>&nbsp;&nbsp;bumpMap: texture.brushed,</code></br>
+        <code>&nbsp;&nbsp;bumpScale: 0.003,</code></br>
+        <code>&nbsp;&nbsp;...</code></br>
+        <code>} ),</code></br>
+        <div class="threejs-container small-top">Loading...</div>
+        <img class="tiny" src="js/textures/brushed.png">
+	</div></section>
+	<section class="slide"><div>
+		<h2>Environment maps</h2>
+        <code>new THREE.MeshPhongMaterial( {</code></br>
+        <code>&nbsp;&nbsp;envMap: texture.sky,</code></br>
+        <code>&nbsp;&nbsp;...</code></br>
+        <code>} ),</code></br>
+        <div class="threejs-container small-top">Loading...</div>
+        <img class="tiny" src="js/textures/sky.jpg">
+	</div></section>
+	<section class="slide"><div>
+		<h2>Transparency - Blending</h2>
+        <code>new THREE.MeshPhongMaterial( {</code></br>
+        <code>&nbsp;&nbsp;blending: THREE.AdditiveBlending,</code></br>
+        <code>&nbsp;&nbsp;opacity: 0.95,</code></br>
+        <code>&nbsp;&nbsp;shading: THREE.SmoothShading,</code></br>
+        <code>&nbsp;&nbsp;transparent: true,</code></br>
+        <code>&nbsp;&nbsp;combine: THREE.MixOperation,</code></br>
+        <code>&nbsp;&nbsp;envMap: texture.sky,</code></br>
+        <code>&nbsp;&nbsp;reflectivity: 0.29,</code></br>
+        <code>&nbsp;&nbsp;...</code></br>
+        <div class="threejs-container small">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Interactivity</h2>
+		<ul>
+            <li>Periodically change something, and re-render scene</li>
+            <li>Use <code>requestAnimationFrame</code> rather than <code>setTimeout</code></li>
+        </ul>
+        <code>app.tick = function() {</code></br>
+        <code>&nbsp;&nbsp;app.render();</code></br>
+        <code>&nbsp;&nbsp;window.requestAnimationFrame( app.tick );</code></br>
+        <code>}</code></br>
+        <code>app.tick();</code></br>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+        <h2>Moving the <strong>Camera</strong></h2>
+		<ul>
+            <li><strong>Camera</strong> is also an <strong>Object3D</strong>, and can be moved/rotated</li>
+            <li>Code below zooms <strong>Camera</strong> in and out</li>
+        </ul>
+        <code>app.clock = new THREE.Clock( true );</code></br>
+        <code>app.render = function() {</code></br>
+        <code>&nbsp;&nbsp;var t = 0.2 * app.clock.getElapsedTime();</code></br>
+        <code>&nbsp;&nbsp;var r = 15.0 + 12.0 * Math.cos( 0.3 * t );</code></br>
+        <code>&nbsp;&nbsp;camera.position = new THREE.Vector3( 0, 0, r );</code></br>
+        <code>&nbsp;&nbsp;...</code></br>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+        <h2>Looking at Objects</h2>
+		<ul>
+            <li>Simplest way set correct <strong>Camera</strong> orientation</li>
+        </ul>
+        <code>app.render = function() {</code></br>
+        <code>&nbsp;&nbsp;...</code></br>
+        <code>&nbsp;&nbsp;camera.position = camPosition;</code></br>
+        <code>&nbsp;&nbsp;camera.up = new THREE.Vector3( 0, 0, 1 );</code></br>
+        <code>&nbsp;&nbsp;camera.lookAt( new THREE.Vector3( 1, 2, 3 ) );</code></br>
+        <code>};</code></br>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+        <h2>Camera Orbiting</h2>
+		<ul>
+            <li>Orbital motion with changing height</li>
+        </ul>
+        <code>var r = 15.0 + 12.0 * Math.cos( 0.3 * t );</code></br>
+        <code>camera.position = new THREE.Vector3(</code></br>
+        <code>&nbsp;&nbsp;r * Math.sin( t ), // Orbital motion</code></br>
+        <code>&nbsp;&nbsp;r * Math.cos( t ), // Orbital motion</code></br>
+        <code>&nbsp;&nbsp;12.0 + 5.0 * Math.cos( 1.3 * t ) // Height</code></br>
+        <code>);</code></br>
+        <div class="threejs-container small-top">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+        <h2>Interactivity</h2>
+		<ul>
+            <li>Can move <strong>Object3D</strong> instances on stage in same way</li>
+            <li>Hook into mouse/keyboard events</li>
+        </ul>
+        <div class="threejs-container medium">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+        <h2>Built-in Control classes</h2>
+		<ul>
+            <li>THREE.js also comes with some pre-made controls, e.g.</li>
+            <ul>
+                <li>FirstPersonControls</li>
+                <li>FlyControls</li>
+                <li>TrackballControls</li>
+            </ul>
+            <li>See <a href="https://github.com/mrdoob/three.js/tree/master/examples/js/controls">/examples/js/controls</a> in THREE.js repo</li>
+        </ul>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide cover fullscreen" id="Questions"><div>
+		<h2>Questions?</h2>
+        </br>
+		<p>Felix Palmer | @pheeelicks | www.pheelicks.com</p>
+        </br>
+        <p>Slides: <a href="http://safari-webgl.github.io/presentation.html">http://safari-webgl.github.io/presentation.html</a></p>
+        <div id="threejs-container" class="threejs-container">Loading...</div>
+	</div></section>
+	<div class="progress"></div>
+	<script src="shower/shower.min.js"></script>
+    <script src="js/config.js"></script>
+    <script data-main="../presentation" src="js/require.js"></script>
+</body>
+</html>

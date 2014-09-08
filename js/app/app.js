@@ -10,8 +10,8 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       // Table to place compass on
       app.table = new THREE.Mesh( geometry.table, material.wood );
       app.table.receiveShadow = true;
-      app.table.position.x = -50;
-      app.table.position.y = 50;
+      app.table.position.x = 20;
+      app.table.position.y = -10;
       app.table.position.z = -geometry.chromeRadius;
       scene.add( app.table );
 
@@ -39,27 +39,6 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       app.backplate.receiveShadow = true;
       scene.add( app.backplate );
 
-      app.arrowRed = new THREE.Mesh( geometry.arrow, material.flatRed );
-      app.arrowRed.rotation.z = app.bearing;
-      app.arrowRed.position.z = 0.2;
-      app.arrowRed.castShadow = true;
-      scene.add( app.arrowRed );
-      app.arrowWhite = new THREE.Mesh( geometry.arrow, material.flatWhite );
-      app.arrowWhite.rotation.z = app.bearing + Math.PI;
-      app.arrowWhite.position.z = 0.2;
-      app.arrowWhite.castShadow = true;
-      scene.add( app.arrowWhite );
-
-      app.cover = new THREE.Mesh( geometry.cover, material.cover );
-      app.cover.scale = new THREE.Vector3( 1, 1, 0.1 );
-      scene.add( app.cover );
-
-      app.centerBlob = new THREE.Mesh( geometry.blob, material.flatWhite );
-      app.centerBlob.position.z = 0.33;
-      app.centerBlob.scale = new THREE.Vector3( 0.7, 0.7, 0.35 );
-      app.centerBlob.castShadow = true;
-      scene.add( app.centerBlob );
-      
       var radius = geometry.plateRadius - 0.6;
       var theta, triangle, scale;
       for ( var n = 0; n < 72; n++ ) {
@@ -100,16 +79,52 @@ function ( THREE, camera, container, controls, geometry, light, material, render
         text.position.z = 0.01;
         circle.receiveShadow = true;
         text.receiveShadow = true;
+        if ( directions[d] === "E" ) {
+          app.label = text;
+        }
         scene.add( circle );
         scene.add( text );
       }
 
       // Inner white ring
-      var flatRing = new THREE.Mesh( geometry.flatRing, material.flatWhite );
-      flatRing.position.z = 0.01;
-      flatRing.receiveShadow = true;
-      scene.add( flatRing );
+      app.flatRing = new THREE.Mesh( geometry.flatRing, material.flatWhite );
+      app.flatRing.position.z = 0.01;
+      app.flatRing.receiveShadow = true;
+      scene.add( app.flatRing );
 
+      // Needle
+      app.arrowRed = new THREE.Mesh( geometry.arrow, material.flatRed );
+      app.arrowRed.rotation.z = app.bearing;
+      app.arrowRed.position.z = 0.2;
+      app.arrowRed.castShadow = true;
+      scene.add( app.arrowRed );
+      app.arrowWhite = new THREE.Mesh( geometry.arrow, material.flatWhite );
+      app.arrowWhite.rotation.z = app.bearing + Math.PI;
+      app.arrowWhite.position.z = 0.2;
+      app.arrowWhite.castShadow = true;
+      scene.add( app.arrowWhite );
+
+      app.centerBlob = new THREE.Mesh( geometry.blob, material.flatWhite );
+      app.centerBlob.position.z = 0.33;
+      app.centerBlob.scale = new THREE.Vector3( 0.7, 0.7, 0.35 );
+      app.centerBlob.castShadow = true;
+      scene.add( app.centerBlob );
+      
+      app.cover = new THREE.Mesh( geometry.cover, material.cover );
+      app.cover.scale = new THREE.Vector3( 1, 1, 0.1 );
+      scene.add( app.cover );
+      
+      // Get all meshes
+      app.meshes = [];
+      for ( var c in scene.children ) {
+        if ( scene.children.hasOwnProperty( c ) ) {
+          var obj = scene.children[c];
+          if ( obj instanceof THREE.Mesh ) {
+            app.meshes.push( obj );
+          }
+        }
+      }
+      
       // Triangles pointing out from inner ring
       for ( n = 0; n < 8; n++ ) {
         theta = n * Math.PI / 4;
@@ -139,24 +154,90 @@ function ( THREE, camera, container, controls, geometry, light, material, render
         smallText.rotation.z = theta;
         scene.add( smallText );
       }
-      var creditText = new THREE.Mesh( geometry.text( "@pheeelicks" ), material.flatGrey );
-      creditText.position.y = -3.7;
-      creditText.position.z = 0.1;
-      creditText.scale = new THREE.Vector3( 0.1, 0.1, 0.1 );
-      scene.add( creditText );
+      app.creditText = new THREE.Mesh( geometry.text( "@pheeelicks" ), material.flatGrey );
+      app.creditText.position.y = -3.7;
+      app.creditText.position.z = 0.1;
+      app.creditText.scale = new THREE.Vector3( 0.1, 0.1, 0.1 );
+      scene.add( app.creditText );
 
-      container.onclick = function () {
+      renderer.domElement.onclick = function () {
         app.bearing = 2 * Math.PI * Math.random();
       };
-      container.addEventListener( 'mousemove', function( e ) {
+      renderer.domElement.addEventListener( 'mousemove', function( e ) {
         app.mouse = {
-          x: e.clientX - container.offsetWidth / 2,
-          y: e.clientY - container.offsetHeight / 2
+          x: e.clientX - renderer.domElement.offsetWidth / 2,
+          y: e.clientY - renderer.domElement.offsetHeight / 2
         };
       } );
     },
+    // Enable showing wireframe version of model
+    setMaterial: function( mat, objects ) {
+      var iterObjects = objects ? objects : app.meshes;
+      for ( var m in iterObjects ) {
+        if ( iterObjects.hasOwnProperty( m ) ) {
+          var mesh = iterObjects[m];
+          if ( mat ) {
+            if ( mesh._material === undefined ) {
+              // Stash away properties we will modify
+              mesh._material = mesh.material;
+            }
+            mesh.material = mat;
+          } else { // disable
+            if ( mesh._material ) {
+              mesh.material = mesh._material;
+            }
+          }
+        }
+      }
+    },
+    wireframe: function( enable ) {
+      app.setMaterial( enable ? material.wire : null );
+    },
+    // Highlight a single object
+    highlight: function( object, dist ) {
+      camera.orbitObject = object;
+      camera.orbitDist = dist;
+      if ( object ) {
+        app.wireframe( true );
+        object.material = object._material;
+      } else {
+        app.wireframe( false );
+      }
+    },
+    explode: function ( explode ) {
+      var dz = 0;
+      var mat = new THREE.Matrix4();
+      var mat2 = new THREE.Matrix4();
+      for ( var m in app.meshes ) {
+        if ( app.meshes.hasOwnProperty( m ) ) {
+          var mesh = app.meshes[m];
+          // Calcualate matrix transform
+          if ( !mesh._explodeMatrix ) {
+            dz += 0.1;
+            mat.makeTranslation( 0.3 * mesh.position.x, 0.3 * mesh.position.y, dz );
+            mat2.makeRotationX( 0.02 * dz );
+            mat.multiply( mat2 );
+            mesh._explodeMatrix = mat.clone();
+          }
+          if ( explode && !mesh._exploded ) {
+            // Explode
+            mesh._exploded = true;
+            mesh.applyMatrix( mesh._explodeMatrix );
+          } else if ( !explode && mesh._exploded ) {
+            // Implode
+            mesh._exploded = false;
+            mat.getInverse( mesh._explodeMatrix );
+            mesh.applyMatrix( mat );
+          }
+        }
+      }
+    },
     animate: function () {
       window.requestAnimationFrame( app.animate );
+      app.draw();
+    },
+    spin: false,
+    draw: function () {
       //controls.update();
 
       // Calculate where camera should move to and smoothly pan
@@ -165,10 +246,31 @@ function ( THREE, camera, container, controls, geometry, light, material, render
         - 0.1 * app.mouse.x,
         10 + 0.07 * Math.abs( app.mouse.y )
       );
+      if ( app.spin ) {
+        var t = 0.25 * app.clock.getElapsedTime();
+        var r = 15.0 + 12.0 * Math.cos( 0.3 * t );
+        if ( camera.orbitDist ) {
+          r = camera.orbitDist;
+        } else if ( camera.orbitObject ) {
+          r = 1.5 * camera.orbitObject.geometry.boundingSphere.radius;
+        }
+        camPosition = new THREE.Vector3(
+            r * Math.sin( t ),
+            r * Math.cos( t ),
+            camera.orbitObject ? 0.4 * r : ( 12.0 + 5.0 * Math.cos( 1.3 * t ) )
+            );
+        if ( camera.orbitObject ) {
+          camPosition.add( camera.orbitObject.position );
+        }
+      }
       camera.position.x += ( camPosition.x - camera.position.x ) * 0.05;
       camera.position.y += ( camPosition.y - camera.position.y ) * 0.05;
       camera.position.z += ( camPosition.z  - camera.position.z ) * 0.05;
-      camera.lookAt( scene.position );
+      if ( camera.orbitObject ) {
+        camera.lookAt( camera.orbitObject.position );
+      } else {
+        camera.lookAt( scene.position );
+      }
 
       var time = 0.7 * app.clock.getElapsedTime() ;
       light.position.y = 3 * Math.sin ( 0.71 * time );
