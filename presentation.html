@@ -118,8 +118,6 @@
 		<p>Felix Palmer | @pheeelicks | www.pheelicks.com</p>
 	</header>
 	<section class="slide cover fullscreen"><div>
-         <a href="https://twitter.com/share" class="twitter-share-button" data-text="Safari in Safari - An Introduction to 3D content on the Web" data-via="pheeelicks">Tweet</a>
-         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 		<h2>Safari in Safari - An Introduction to 3D content on the Web</h2>
         </br>
 		<p>Felix Palmer | @pheeelicks | www.pheelicks.com</p>
@@ -128,33 +126,31 @@
         <div id="threejs-container" class="threejs-container">Loading...</div>
 	</div></section>
 	<section class="slide"><div>
-		<h2>Talk overview</h2>
-		<ol>
-			<li>Why WebGL?</li>
-			<li>THREE.js - introduction</li>
-			<li>Geometry</li>
-			<li>Materials</li>
-			<li>Lights, Camera</li>
-			<li>Interactivity</li>
-		</ol>
+		<h2>Overview</h2>
+		<ul>
+			<li>What is THREE.js?</li>
+			<li>How do I build this thing?</li>
+			<li>Bringing it to life</li>
+		</ul>
+        </br>
+        </br>
         <p>Slides: <a href="http://felixpalmer.github.io/safari-webgl/presentation.html">felixpalmer.github.io/safari-webgl/presentation.html</a></p>
         <div class="threejs-container small-top">Loading...</div>
 	</div></section>
 	<section class="slide"><div>
 		<h2>Why WebGL?</h2>
-		<ol>
+		<ul>
 			<li>Accessible 3D for all</li>
 			<li>Support across browsers and mobile increasing all the time</li>
 			<li>Combination of JavaScript &amp; GLSL very effective</li>
-			<li>Future of programming: GPU &amp; CPU</li>
-            <li>Some examples: <a href="http://threejs.org">http://threejs.org</a></li>
-		</ol>
+		</ul>
+        <p>Some examples: <a href="http://threejs.org">http://threejs.org</a></p>
         <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
 	<section class="slide"><div>
 		<h2>THREE.js - The macro and the micro</h2>
 		<ul>
-			<li>3D graphics is pretty involved. THREE.js let's you:</li>
+			<li>3D graphics is pretty involved. THREE.js lets you:</li>
             <ul>
                 <li>focus on the high level content (JavaScript land)</li>
                 <li>...with the power to show high-performance (GLSL land)</li>
@@ -210,13 +206,14 @@
         <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
 	<section class="slide"><div>
-		<h2>Project example</h2>
+		<h2>Larger projects</h2>
 		<ul>
-			<li>THREE.js project boilerplate</li>
-			<li>Structuring larger applications by splitting into modules</li>
 			<li>Use Require.js for structure</li>
-            <li>My approach: <a href="https://github.com/felixpalmer/amd-three.js">amd-three.js</a></li>
+			<li>Split concerns into own modules</li>
 		</ul>
+        </br>
+        </br>
+        <p><a href="https://github.com/felixpalmer/amd-three.js">https://github.com/felixpalmer/amd-three.js</a></p>
         <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
 	<section class="slide"><div>
@@ -232,11 +229,19 @@
         <code>...</code></br>
 	</div></section>
 	<section class="slide"><div>
+		<h2>How do I build this thing?</h2>
+		<ul>
+            <li><strong>Geometries</strong></li>
+            <li><strong>Materials</strong></li>
+        </ul>
+        <div class="threejs-container medium">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
 		<h2>Geometry</h2>
 		<ul>
             <li><strong>Scene</strong> is composed of a collection of <strong>Meshes</strong></li>
             <li>Each has a <strong>Geometry</strong></li>
-            <li>These can be shared, e.g. needle is actually 2 <strong>Meshes</strong> with same <strong>Geometry</strong></li>
+            <li>Can be shared, e.g. needle is actually 2 <strong>Meshes</strong> with same <strong>Geometry</strong></li>
         </ul>
         <div class="threejs-container small">Loading...</div>
 	</div></section>
@@ -445,8 +450,8 @@
         </ul>
         <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
-	<section class="slide cover fullscreen" id="Questions"><div>
-		<h2>Questions?</h2>
+	<section class="slide cover fullscreen" id="Thanks"><div>
+		<h2>Thanks</h2>
         </br>
 		<p>Felix Palmer | @pheeelicks | www.pheelicks.com</p>
         <p>Slides: <a href="http://felixpalmer.github.io/safari-webgl/presentation.html">felixpalmer.github.io/safari-webgl/presentation.html</a></p>
