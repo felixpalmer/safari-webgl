@@ -221,7 +221,7 @@
 	</div></section>
 	<section class="slide"><div>
 		<h2>Require.js module</h2>
-        <code>define(["camera","geometry","material","renderer","scene"],</code></br>
+        <code>define( ["camera","geometry","material","renderer","scene"],</code></br>
         <code>&nbsp;&nbsp;function ( camera, geometry, material, renderer, scene ) {</code></br>
         <code>&nbsp;&nbsp;&nbsp;&nbsp;var app = {</code></br>
         <code>&nbsp;&nbsp;&nbsp;&nbsp;init: function () {</code></br>
@@ -234,9 +234,9 @@
 	<section class="slide"><div>
 		<h2>Geometry</h2>
 		<ul>
-            <li><strong>Scene</strong> is composed of a collection of objects</li>
+            <li><strong>Scene</strong> is composed of a collection of <strong>Meshes</strong></li>
             <li>Each has a <strong>Geometry</strong></li>
-            <li>These can be shared, e.g. needle is actually 2 <strong>Geometries</strong></li>
+            <li>These can be shared, e.g. needle is actually 2 <strong>Meshes</strong> with same <strong>Geometry</strong></li>
         </ul>
         <div class="threejs-container small">Loading...</div>
 	</div></section>
@@ -279,7 +279,7 @@
 	<section class="slide"><div>
 		<h2>Material</h2>
 		<ul>
-            <li>Each object in the <strong>Scene</strong> also has a <strong>Material</strong></li>
+            <li>Each <strong>Mesh</strong> in the <strong>Scene</strong> also has a <strong>Material</strong></li>
             <li>As with <strong>Geometries</strong>, <strong>Materials</strong> can be shared</li>
         </ul>
         <div class="threejs-container small">Loading...</div>
