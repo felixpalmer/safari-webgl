@@ -119,13 +119,17 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
         if ( slideNumber === materialSlideStart + 7 ) {
           app.setMaterial( material.cover, [app.blob, app.backplate, app.cover, app.ring, app.smallRing] );
         }
-        // Light
+        // Bringing it to life
         if ( slideNumber === 25 ) {
+          app.lightMove = true;
+        }
+        // Light
+        if ( slideNumber === 26 ) {
           app.spin = false;
           app.lightMove = true;
         }
         // Camera control
-        if ( slideNumber === 30 ) {
+        if ( slideNumber === 31 ) {
           app.spin = false;
         }
         // End

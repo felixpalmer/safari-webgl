@@ -148,18 +148,6 @@
         <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
 	<section class="slide"><div>
-		<h2>THREE.js - The macro and the micro</h2>
-		<ul>
-			<li>3D graphics is pretty involved. THREE.js lets you:</li>
-            <ul>
-                <li>focus on the high level content (JavaScript land)</li>
-                <li>...with the power to show high-performance (GLSL land)</li>
-                <li>...while handling all the fiddly bits in between</li>
-            </ul>
-		</ul>
-        <img class="right" src="pictures/sidebar.png" alt="">
-	</div></section>
-	<section class="slide"><div>
 		<h2>THREE.js overview</h2>
 		<ul>
 			<li>High level library for rendering 3D content</li>
@@ -203,6 +191,18 @@
         <code>var camera = new THREE.PerspectiveCamera( 70 );</code></br>
         <code>scene.add( camera );</code></br>
         <code>var renderer = new THREE.WebGLRenderer();</code></br>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+		<h2>THREE.js - The macro and the micro</h2>
+		<ul>
+			<li>3D graphics is pretty involved. THREE.js lets you:</li>
+            <ul>
+                <li>focus on the high level content (JavaScript land)</li>
+                <li>...with the access to the low level function (GLSL land)</li>
+                <li>...while handling all the fiddly bits in between</li>
+            </ul>
+		</ul>
         <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
 	<section class="slide"><div>
@@ -353,15 +353,23 @@
 	<section class="slide"><div>
 		<h2>Transparency - Blending</h2>
         <code>new THREE.MeshPhongMaterial( {</code></br>
-        <code>&nbsp;&nbsp;blending: THREE.AdditiveBlending,</code></br>
-        <code>&nbsp;&nbsp;opacity: 0.95,</code></br>
-        <code>&nbsp;&nbsp;shading: THREE.SmoothShading,</code></br>
         <code>&nbsp;&nbsp;transparent: true,</code></br>
+        <code>&nbsp;&nbsp;opacity: 0.95,</code></br>
+        <code>&nbsp;&nbsp;blending: THREE.AdditiveBlending,</code></br>
+        <code>&nbsp;&nbsp;shading: THREE.SmoothShading,</code></br>
         <code>&nbsp;&nbsp;combine: THREE.MixOperation,</code></br>
         <code>&nbsp;&nbsp;envMap: texture.sky,</code></br>
         <code>&nbsp;&nbsp;reflectivity: 0.29,</code></br>
         <code>&nbsp;&nbsp;...</code></br>
         <div class="threejs-container small">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Bringing it to life</h2>
+		<ul>
+            <li>Lights &amp; shadows</li>
+            <li>Camera &amp; interactivity</li>
+        </ul>
+        <div class="threejs-container medium">Loading...</div>
 	</div></section>
 	<section class="slide"><div>
         <h2>Lights</h2>
@@ -430,25 +438,12 @@
         <div class="threejs-container small-top">Loading...</div>
 	</div></section>
 	<section class="slide"><div>
-        <h2>Interactivity</h2>
+        <h2>User Input</h2>
 		<ul>
-            <li>Can move <strong>Object3D</strong> instances on stage in same way</li>
             <li>Hook into mouse/keyboard events</li>
+            <li>Can move any <strong>Object3D</strong> instances on stage in same way</li>
         </ul>
         <div class="threejs-container medium">Loading...</div>
-	</div></section>
-	<section class="slide"><div>
-        <h2>Built-in Control classes</h2>
-		<ul>
-            <li>THREE.js also comes with some pre-made controls, e.g.</li>
-            <ul>
-                <li>FirstPersonControls</li>
-                <li>FlyControls</li>
-                <li>TrackballControls</li>
-            </ul>
-            <li>See <a href="https://github.com/mrdoob/three.js/tree/master/examples/js/controls">/examples/js/controls</a> in THREE.js repo</li>
-        </ul>
-        <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
 	<section class="slide cover fullscreen" id="Thanks"><div>
 		<h2>Thanks</h2>
