@@ -47,6 +47,10 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
         if ( slideNumber === 1 ) {
           app.spin = false;
         }
+        // THREE.js overview
+        if ( slideNumber === 4 ) {
+          app.highlight( app.backplate );
+        }
         // Geometries
         var geomSlideStart = 9; // Bit crappy, should really have better way of referring to slides
         if ( slideNumber === geomSlideStart ) {
