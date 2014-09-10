@@ -347,6 +347,19 @@
         <div class="threejs-container small">Loading...</div>
 	</div></section>
 	<section class="slide"><div>
+        <h2>Lights</h2>
+		<ul>
+            <li>Just like adding any other object to scene</li>
+            <li>Use SpotLight to cast shadows</li>
+            <li>Interacts with Materials</li>
+        </ul>
+        <code>var light = new THREE.SpotLight( 0xffffff, 1, 0 );</code></br>
+        <code>light.position.set( 25, -20, 20 );</code></br>
+        <code>light.target.position.set( 0, 0, 0 );</code></br>
+        <code>light.castShadow = true;</code></br>
+        <div class="threejs-container small-top">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
 		<h2>Interactivity</h2>
 		<ul>
             <li>Periodically change something, and re-render scene</li>
