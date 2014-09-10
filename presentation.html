@@ -304,6 +304,19 @@
         <img class="tiny" src="js/textures/wood.jpg">
 	</div></section>
 	<section class="slide"><div>
+		<h2>Environment maps</h2>
+		<ul>
+            <li>Used for reflective objects</li>
+            <li>Acts like mirror onto environment map</li>
+        </ul>
+        <code>new THREE.MeshPhongMaterial( {</code></br>
+        <code>&nbsp;&nbsp;envMap: texture.sky,</code></br>
+        <code>&nbsp;&nbsp;...</code></br>
+        <code>} ),</code></br>
+        <div class="threejs-container small-top">Loading...</div>
+        <img class="tiny" src="js/textures/sky.jpg">
+	</div></section>
+	<section class="slide"><div>
 		<h2>Bump maps</h2>
 		<ul>
             <li>For adding bumps</li>
@@ -317,19 +330,6 @@
         <code>} ),</code></br>
         <div class="threejs-container small-top">Loading...</div>
         <img class="tiny" src="js/textures/brushed.png">
-	</div></section>
-	<section class="slide"><div>
-		<h2>Environment maps</h2>
-		<ul>
-            <li>Used for reflective objects</li>
-            <li>Acts like mirror onto environment map</li>
-        </ul>
-        <code>new THREE.MeshPhongMaterial( {</code></br>
-        <code>&nbsp;&nbsp;envMap: texture.sky,</code></br>
-        <code>&nbsp;&nbsp;...</code></br>
-        <code>} ),</code></br>
-        <div class="threejs-container small-top">Loading...</div>
-        <img class="tiny" src="js/textures/sky.jpg">
 	</div></section>
 	<section class="slide"><div>
 		<h2>Transparency - Blending</h2>

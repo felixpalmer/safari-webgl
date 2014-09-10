@@ -91,7 +91,6 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
           app.wireframe( true );
         }
         if ( slideNumber === materialSlideStart + 2 ) {
-          //app.explode( true );
           app.setMaterial( material.basic, [app.blob, app.cover, app.ring, app.smallRing] );
         }
         if ( slideNumber === materialSlideStart + 3 ) {
@@ -101,9 +100,12 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
           app.highlight( app.table, 7 );
         }
         if ( slideNumber === materialSlideStart + 5 ) {
+          app.highlight( app.ring, 17 );
+        }
+        if ( slideNumber === materialSlideStart + 6 ) {
           var t = 0;
           var bumpChange = function() {
-            if ( shower.getCurrentSlideNumber() !== materialSlideStart + 5 ) {
+            if ( shower.getCurrentSlideNumber() !== materialSlideStart + 6 ) {
               return;
             }
             t += 0.5;
@@ -112,9 +114,6 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
           };
           bumpChange();
           app.highlight( app.blob );
-        }
-        if ( slideNumber === materialSlideStart + 6 ) {
-          app.highlight( app.ring, 17 );
         }
         if ( slideNumber === materialSlideStart + 7 ) {
           app.setMaterial( material.cover, [app.blob, app.backplate, app.cover, app.ring, app.smallRing] );
