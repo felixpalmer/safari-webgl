@@ -121,43 +121,30 @@
 		<h2>Safari in Safari - An Introduction to 3D content on the Web</h2>
         </br>
 		<p>Felix Palmer | @pheeelicks | www.pheelicks.com</p>
-        </br>
-        <p>Slides: <a href="http://felixpalmer.github.io/safari-webgl/presentation.html">http://felixpalmer.github.io/safari-webgl/presentation.html</a></p>
+        <p>Slides: <a href="http://felixpalmer.github.io/safari-webgl/presentation.html">felixpalmer.github.io/safari-webgl/presentation.html</a></p>
+        <p>Code: <a href="https://github.com/felixpalmer/safari-webgl">github.com/felixpalmer/safari-webgl</a></p>
         <div id="threejs-container" class="threejs-container">Loading...</div>
 	</div></section>
 	<section class="slide"><div>
-		<h2>Talk overview</h2>
-		<ol>
-			<li>Why WebGL?</li>
-			<li>THREE.js - introduction</li>
-			<li>Structuring code</li>
-			<li>Geometry</li>
-			<li>Materials</li>
-			<li>Interactivity</li>
-		</ol>
-        <div class="threejs-container small">Loading...</div>
+		<h2>Overview</h2>
+		<ul>
+			<li>What is THREE.js?</li>
+			<li>How do I build this thing?</li>
+			<li>Bringing it to life</li>
+		</ul>
+        </br>
+        </br>
+        <p>Slides: <a href="http://felixpalmer.github.io/safari-webgl/presentation.html">felixpalmer.github.io/safari-webgl/presentation.html</a></p>
+        <div class="threejs-container small-top">Loading...</div>
 	</div></section>
 	<section class="slide"><div>
 		<h2>Why WebGL?</h2>
-		<ol>
+		<ul>
 			<li>Accessible 3D for all</li>
 			<li>Support across browsers and mobile increasing all the time</li>
 			<li>Combination of JavaScript &amp; GLSL very effective</li>
-			<li>Future of programming: GPU &amp; CPU</li>
-            <li>Some examples: <a href="http://threejs.org">http://threejs.org</a></li>
-		</ol>
-        <img class="right" src="pictures/sidebar.png" alt="">
-	</div></section>
-	<section class="slide"><div>
-		<h2>THREE.js - The macro and the micro</h2>
-		<ul>
-			<li>3D graphics is pretty involved. THREE.js let's you:</li>
-            <ul>
-                <li>focus on the high level content (JavaScript land)</li>
-                <li>...with the power to show high-performance (GLSL land)</li>
-                <li>...while handling all the fiddly bits in between</li>
-            </ul>
 		</ul>
+        <p>Some examples: <a href="http://threejs.org">http://threejs.org</a></p>
         <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
 	<section class="slide"><div>
@@ -172,7 +159,7 @@
                 <li><strong>Material</strong> -  defines how the surface is to be drawn</li>
             </ul>
 		</ul>
-        <img class="right" src="pictures/sidebar.png" alt="">
+        <div class="threejs-container small-top">Loading...</div>
 	</div></section>
 	<section class="slide"><div>
 		<h2>Scene graph</h2>
@@ -207,21 +194,54 @@
         <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
 	<section class="slide"><div>
-		<h2>Project example</h2>
+		<h2>THREE.js - The macro and the micro</h2>
 		<ul>
-			<li>THREE.js project boilerplate</li>
-			<li>Structuring larger applications by splitting into modules</li>
-			<li>Use Require.js for structure</li>
-            <li>My approach: <a href="https://github.com/felixpalmer/amd-three.js">amd-three.js</a></li>
+			<li>3D graphics is pretty involved. THREE.js lets you:</li>
+            <ul>
+                <li>focus on the high level content (JavaScript land)</li>
+                <li>...with the access to the low level function (GLSL land)</li>
+                <li>...while handling all the fiddly bits in between</li>
+            </ul>
 		</ul>
         <img class="right" src="pictures/sidebar.png" alt="">
 	</div></section>
 	<section class="slide"><div>
+		<h2>Larger projects</h2>
+		<ul>
+			<li>Use Require.js for structure</li>
+			<li>Split concerns into own modules</li>
+		</ul>
+        </br>
+        </br>
+        <p><a href="https://github.com/felixpalmer/amd-three.js">https://github.com/felixpalmer/amd-three.js</a></p>
+        <img class="right" src="pictures/sidebar.png" alt="">
+	</div></section>
+	<section class="slide"><div>
+		<h2>Require.js module</h2>
+        <code>define( ["camera","geometry","material","renderer","scene"],</code></br>
+        <code>&nbsp;&nbsp;function ( camera, geometry, material, renderer, scene ) {</code></br>
+        <code>&nbsp;&nbsp;&nbsp;&nbsp;var app = {</code></br>
+        <code>&nbsp;&nbsp;&nbsp;&nbsp;init: function () {</code></br>
+        <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;app.mesh = new THREE.Mesh(geometry.box, material.ice);</code></br>
+        <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;app.mesh.position.x = 20;</code></br>
+        <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scene.add( app.mesh );</code></br>
+        <code>&nbsp;&nbsp;&nbsp;&nbsp;},</code></br>
+        <code>...</code></br>
+	</div></section>
+	<section class="slide"><div>
+		<h2>How do I build this thing?</h2>
+		<ul>
+            <li><strong>Geometries</strong></li>
+            <li><strong>Materials</strong></li>
+        </ul>
+        <div class="threejs-container medium">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
 		<h2>Geometry</h2>
 		<ul>
-            <li><strong>Scene</strong> is composed of a collection of objects</li>
+            <li><strong>Scene</strong> is composed of a collection of <strong>Meshes</strong></li>
             <li>Each has a <strong>Geometry</strong></li>
-            <li>These can be shared, e.g. needle is actually 2 <strong>Geometries</strong></li>
+            <li>Can be shared, e.g. needle is actually 2 <strong>Meshes</strong> with same <strong>Geometry</strong></li>
         </ul>
         <div class="threejs-container small">Loading...</div>
 	</div></section>
@@ -264,7 +284,7 @@
 	<section class="slide"><div>
 		<h2>Material</h2>
 		<ul>
-            <li>Each object in the <strong>Scene</strong> also has a <strong>Material</strong></li>
+            <li>Each <strong>Mesh</strong> in the <strong>Scene</strong> also has a <strong>Material</strong></li>
             <li>As with <strong>Geometries</strong>, <strong>Materials</strong> can be shared</li>
         </ul>
         <div class="threejs-container small">Loading...</div>
@@ -303,21 +323,6 @@
         <img class="tiny" src="js/textures/wood.jpg">
 	</div></section>
 	<section class="slide"><div>
-		<h2>Bump maps</h2>
-		<ul>
-            <li>For adding bumps</li>
-            <li>Bump scale determines roughness</li>
-            <li>Bump map describes deformation of surface</li>
-        </ul>
-        <code>new THREE.MeshPhongMaterial( {</code></br>
-        <code>&nbsp;&nbsp;bumpMap: texture.brushed,</code></br>
-        <code>&nbsp;&nbsp;bumpScale: 0.003,</code></br>
-        <code>&nbsp;&nbsp;...</code></br>
-        <code>} ),</code></br>
-        <div class="threejs-container small-top">Loading...</div>
-        <img class="tiny" src="js/textures/brushed.png">
-	</div></section>
-	<section class="slide"><div>
 		<h2>Environment maps</h2>
 		<ul>
             <li>Used for reflective objects</li>
@@ -331,17 +336,53 @@
         <img class="tiny" src="js/textures/sky.jpg">
 	</div></section>
 	<section class="slide"><div>
+		<h2>Bump maps</h2>
+		<ul>
+            <li>For adding small-scale deformations</li>
+            <li>Bump scale determines roughness</li>
+            <li>Bump map texture describes deformation of surface</li>
+        </ul>
+        <code>new THREE.MeshPhongMaterial( {</code></br>
+        <code>&nbsp;&nbsp;bumpMap: texture.brushed,</code></br>
+        <code>&nbsp;&nbsp;bumpScale: 0.003,</code></br>
+        <code>&nbsp;&nbsp;...</code></br>
+        <code>} ),</code></br>
+        <div class="threejs-container small-top">Loading...</div>
+        <img class="tiny" src="js/textures/brushed.png">
+	</div></section>
+	<section class="slide"><div>
 		<h2>Transparency - Blending</h2>
         <code>new THREE.MeshPhongMaterial( {</code></br>
-        <code>&nbsp;&nbsp;blending: THREE.AdditiveBlending,</code></br>
-        <code>&nbsp;&nbsp;opacity: 0.95,</code></br>
-        <code>&nbsp;&nbsp;shading: THREE.SmoothShading,</code></br>
         <code>&nbsp;&nbsp;transparent: true,</code></br>
+        <code>&nbsp;&nbsp;opacity: 0.95,</code></br>
+        <code>&nbsp;&nbsp;blending: THREE.AdditiveBlending,</code></br>
+        <code>&nbsp;&nbsp;shading: THREE.SmoothShading,</code></br>
         <code>&nbsp;&nbsp;combine: THREE.MixOperation,</code></br>
         <code>&nbsp;&nbsp;envMap: texture.sky,</code></br>
         <code>&nbsp;&nbsp;reflectivity: 0.29,</code></br>
         <code>&nbsp;&nbsp;...</code></br>
         <div class="threejs-container small">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Bringing it to life</h2>
+		<ul>
+            <li>Lights &amp; shadows</li>
+            <li>Camera &amp; interactivity</li>
+        </ul>
+        <div class="threejs-container medium">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+        <h2>Lights</h2>
+		<ul>
+            <li>Just like adding any other object to scene</li>
+            <li>Use SpotLight to cast shadows</li>
+            <li>Interacts with Materials</li>
+        </ul>
+        <code>var light = new THREE.SpotLight( 0xffffff, 1, 0 );</code></br>
+        <code>light.position.set( 25, -20, 20 );</code></br>
+        <code>light.target.position.set( 0, 0, 0 );</code></br>
+        <code>light.castShadow = true;</code></br>
+        <div class="threejs-container small-top">Loading...</div>
 	</div></section>
 	<section class="slide"><div>
 		<h2>Interactivity</h2>
@@ -397,32 +438,19 @@
         <div class="threejs-container small-top">Loading...</div>
 	</div></section>
 	<section class="slide"><div>
-        <h2>Interactivity</h2>
+        <h2>User Input</h2>
 		<ul>
-            <li>Can move <strong>Object3D</strong> instances on stage in same way</li>
             <li>Hook into mouse/keyboard events</li>
+            <li>Can move any <strong>Object3D</strong> instances on stage in same way</li>
         </ul>
         <div class="threejs-container medium">Loading...</div>
 	</div></section>
-	<section class="slide"><div>
-        <h2>Built-in Control classes</h2>
-		<ul>
-            <li>THREE.js also comes with some pre-made controls, e.g.</li>
-            <ul>
-                <li>FirstPersonControls</li>
-                <li>FlyControls</li>
-                <li>TrackballControls</li>
-            </ul>
-            <li>See <a href="https://github.com/mrdoob/three.js/tree/master/examples/js/controls">/examples/js/controls</a> in THREE.js repo</li>
-        </ul>
-        <img class="right" src="pictures/sidebar.png" alt="">
-	</div></section>
-	<section class="slide cover fullscreen" id="Questions"><div>
-		<h2>Questions?</h2>
+	<section class="slide cover fullscreen" id="Thanks"><div>
+		<h2>Thanks</h2>
         </br>
 		<p>Felix Palmer | @pheeelicks | www.pheelicks.com</p>
-        </br>
-        <p>Slides: <a href="http://felixpalmer.github.io/safari-webgl/presentation.html">http://felixpalmer.github.io/safari-webgl/presentation.html</a></p>
+        <p>Slides: <a href="http://felixpalmer.github.io/safari-webgl/presentation.html">felixpalmer.github.io/safari-webgl/presentation.html</a></p>
+        <p>Code: <a href="https://github.com/felixpalmer/safari-webgl">github.com/felixpalmer/safari-webgl</a></p>
         <div id="threejs-container" class="threejs-container">Loading...</div>
 	</div></section>
 	<div class="progress"></div>
