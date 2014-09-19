@@ -5,6 +5,8 @@ safari-webgl
 
 [Live demo](http://felixpalmer.github.io/safari-webgl/) of this repository can be found at [https://github.com/felixpalmer/safari-webgl](http://felixpalmer.github.io/safari-webgl/)
 
+Also see [presentation](http://felixpalmer.github.io/safari-webgl/presentation.html) that uses this model as an example.
+
 ![](https://github.com/felixpalmer/safari-webgl/raw/master/screenshots/screenshot1.png)
 
 Running
