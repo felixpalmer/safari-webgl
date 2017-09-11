@@ -5,17 +5,17 @@ define( ["three", "text!gentilisBold"], function ( THREE, gentilisBold ) {
 
   // Define cross section of ring using a path
   var ringPath = new THREE.Path();
-  ringPath.moveTo( plateRadius - 0.2, 0.2 );
+  ringPath.moveTo( plateRadius - 0.2, 0.1 );
   ringPath.lineTo( plateRadius + rimRadius, 0.1 );
   //ringPath.lineTo( plateRadius - 1, 4 );
   ringPath.absarc( plateRadius + rimRadius + chromeRadius, 0,
                    chromeRadius,
-                  -Math.PI / 2, Math.PI, false ); // Note center coordinates are relative to current location!
-  ringPath.lineTo( plateRadius, -2 );
+                  -0.5*Math.PI, Math.PI, false ); // Note center coordinates are relative to current location!
+  ringPath.lineTo( plateRadius - 0.2, 0.1 );
 
   // Convert cross-section into a 3D shape using the lathe geometry
   var points = ringPath.getPoints( 24, true );
-  points.reverse();
+  //points.reverse();
   var ring = new THREE.LatheGeometry( points, 128 );
   //var ring = new THREE.TorusGeometry( plateRadius + chromeRadius / 2, chromeRadius, 32, 100 );
   var m = new THREE.Matrix4();
