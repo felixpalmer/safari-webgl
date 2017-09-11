@@ -4,7 +4,7 @@ define( ["three", "shader!simple.vert", "shader!simple.frag", "texture"], functi
       color: color,
       emissive: new THREE.Color( "#232323" ),
       specular: new THREE.Color( "#ccccff" ),
-      shading: THREE.FlatShading,
+      shading: THREE.SmoothShading,
       shininess: 40
     } );
   };
@@ -53,7 +53,7 @@ define( ["three", "shader!simple.vert", "shader!simple.frag", "texture"], functi
     }),
     solid: new THREE.MeshLambertMaterial( {
       color: 0x00dcdc,
-      shading: THREE.FlatShading
+      shading: THREE.SmoothShading
     }),
     wire: new THREE.MeshBasicMaterial( { wireframe: true } ),
     wood: new THREE.MeshPhongMaterial( {
