@@ -52,11 +52,14 @@ function ( THREE, camera, container, controls, geometry, light, material, render
           scale = n % 2 ? 0.4 : 0.8;
           triangle = new THREE.Mesh( geometry.triangle, material.flatGrey );
         }
+        var m = new THREE.Matrix4();
+        m.makeScale( scale, 0.33 * scale, scale );
+        triangle.applyMatrix( m );
         triangle.position.x = -( radius + scale / 2) * Math.cos( theta );
         triangle.position.y = -( radius + scale / 2) * Math.sin( theta );
         triangle.rotation.z = theta;
         triangle.position.z = 0.01;
-        triangle.scale = new THREE.Vector3( scale, 0.33 * scale, scale );
+        triangle.updateMatrixWorld( true );
         triangle.receiveShadow = true;
         scene.add( triangle );
       }
@@ -105,13 +108,17 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       scene.add( app.arrowWhite );
 
       app.centerBlob = new THREE.Mesh( geometry.blob, material.flatWhite );
+      var m = new THREE.Matrix4();
+      m.makeScale( 0.7, 0.7, 0.35 );
+      app.centerBlob.applyMatrix( m );
       app.centerBlob.position.z = 0.33;
-      app.centerBlob.scale = new THREE.Vector3( 0.7, 0.7, 0.35 );
       app.centerBlob.castShadow = true;
       scene.add( app.centerBlob );
       
       app.cover = new THREE.Mesh( geometry.cover, material.cover );
-      app.cover.scale = new THREE.Vector3( 1, 1, 0.1 );
+      var m = new THREE.Matrix4();
+      m.makeScale( 1, 1, 0.1 );
+      app.cover.applyMatrix( m );
       scene.add( app.cover );
       
       // Get all meshes
@@ -131,11 +138,13 @@ function ( THREE, camera, container, controls, geometry, light, material, render
         scale = n % 2 ? 1.6 : 2.4;
         radius = geometry.flatRingRadius + scale / 2 - 0.1;
         triangle = new THREE.Mesh( geometry.triangle, material.flatWhite );
+        var m = new THREE.Matrix4();
+        m.makeScale( scale, 0.33 * scale, scale );
+        triangle.applyMatrix( m );
         triangle.position.x = radius * Math.cos( theta );
         triangle.position.y = radius * Math.sin( theta );
         triangle.rotation.z = theta;
         triangle.position.z = 0.015;
-        triangle.scale = new THREE.Vector3( scale, 0.33 * scale, scale );
         triangle.receiveShadow = true;
         scene.add( triangle );
       }
@@ -146,18 +155,22 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       for ( d = 0; d < 4; d++ ) {
         var smallText = new THREE.Mesh( geometry.text( directions[d] ), material.flatWhite );
 
+        var m = new THREE.Matrix4();
+        m.makeScale( 0.4, 0.4, 1 );
+        smallText.applyMatrix( m );
         theta = d * Math.PI / 2 + Math.PI / 4;
         smallText.position.x = radius * Math.cos( theta );
         smallText.position.y = radius * Math.sin( theta );
         smallText.position.z = 0.002;
-        smallText.scale = new THREE.Vector3( 0.4, 0.4, 1 );
         smallText.rotation.z = theta;
         scene.add( smallText );
       }
       app.creditText = new THREE.Mesh( geometry.text( "@pheeelicks" ), material.flatGrey );
+      var m = new THREE.Matrix4();
+      m.makeScale( 0.1, 0.1, 0.1 );
+      app.creditText.applyMatrix( m );
       app.creditText.position.y = -3.7;
       app.creditText.position.z = 0.1;
-      app.creditText.scale = new THREE.Vector3( 0.1, 0.1, 0.1 );
       scene.add( app.creditText );
 
       renderer.domElement.onclick = function () {

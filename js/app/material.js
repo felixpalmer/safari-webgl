@@ -20,7 +20,8 @@ define( ["three", "shader!simple.vert", "shader!simple.frag", "texture"], functi
       bumpScale: 0.003,
       envMap: texture.sky,
       metalness: 0.5,
-      shininess: 15
+      shininess: 15,
+      side: THREE.DoubleSide
     } ),
     cover: new THREE.MeshPhongMaterial( {
       ambient: new THREE.Color( "#000000" ),

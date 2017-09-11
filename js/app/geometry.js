@@ -15,11 +15,7 @@ define( ["three", "text!gentilisBold"], function ( THREE, gentilisBold ) {
 
   // Convert cross-section into a 3D shape using the lathe geometry
   var points = ringPath.getPoints( 24, true );
-  var vectors = [];
-  for ( var p = points.length - 1; p >= 0; p-- ) {
-  //for ( var p = 0; p < points.length; p++ ) {
-    vectors.push( new THREE.Vector2( points[p].x, points[p].y ) );
-  }
+  points.reverse();
   var ring = new THREE.LatheGeometry( points, 128 );
   //var ring = new THREE.TorusGeometry( plateRadius + chromeRadius / 2, chromeRadius, 32, 100 );
   var m = new THREE.Matrix4();
@@ -27,15 +23,15 @@ define( ["three", "text!gentilisBold"], function ( THREE, gentilisBold ) {
   ring.applyMatrix( m );
 
   var arrowPoints = [
-    new THREE.Vector3( 0, 0, 0 ),
-    new THREE.Vector3( 0, 1.3, 0 ),
-    new THREE.Vector3( 0, 0, 10 )
+    new THREE.Vector2( 0, 0 ),
+    new THREE.Vector2( 1.3, 0 ),
+    new THREE.Vector2( 0, 10 )
   ];
   var arrow = new THREE.LatheGeometry( arrowPoints, 3 );
 
   // Rotate arrow and scale to correct proportions
   m = new THREE.Matrix4();
-  m.makeRotationX( Math.PI / 2 );
+  m.makeRotationX( Math.PI );
   arrow.applyMatrix( m );
   m.makeScale( 1, 1, 0.2 );
   arrow.applyMatrix( m );
@@ -69,10 +65,13 @@ define( ["three", "text!gentilisBold"], function ( THREE, gentilisBold ) {
 
   var flatRingRadius = 3.33;
   var flatRingPoints = [
-    new THREE.Vector3( flatRingRadius + 0.1, 0, 0 ),
-    new THREE.Vector3( flatRingRadius - 0.1, 0, 0 )
+    new THREE.Vector2( flatRingRadius + 0.1, 0 ),
+    new THREE.Vector2( flatRingRadius - 0.1, 0 )
   ];
   var flatRing = new THREE.LatheGeometry( flatRingPoints, 64 );
+  m = new THREE.Matrix4();
+  m.makeRotationX( Math.PI / 2);
+  flatRing.applyMatrix( m );
 
   return {
     arrow: arrow,
