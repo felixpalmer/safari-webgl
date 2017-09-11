@@ -1,4 +1,4 @@
-define( ["three", "shader!simple.vert", "shader!simple.frag", "texture"], function ( THREE, simpleVert, simpleFrag, texture ) {
+define( ["three", "texture"], function ( THREE, texture ) {
   var flatWithColor = function( color ) {
     return new THREE.MeshPhongMaterial( {
       color: color,
@@ -23,7 +23,6 @@ define( ["three", "shader!simple.vert", "shader!simple.frag", "texture"], functi
       shininess: 15
     } ),
     cover: new THREE.MeshPhongMaterial( {
-      ambient: new THREE.Color( "#000000" ),
       color: new THREE.Color( "#000000" ),
       emissive: new THREE.Color( "#000000" ),
       specular: new THREE.Color( "#ffffff" ),
@@ -44,20 +43,12 @@ define( ["three", "shader!simple.vert", "shader!simple.frag", "texture"], functi
     flatRed: flatWithColor( new THREE.Color( "#ff2700" ) ),
     flatWhite: flatWithColor( new THREE.Color( "#ffffff" ) ),
     sky: new THREE.MeshBasicMaterial( { map: texture.sky } ),
-    shader: new THREE.ShaderMaterial( {
-      uniforms: {
-        uColor: { type: "c", value: new THREE.Color( "#ff0000" ) }
-      },
-      vertexShader: simpleVert.value,
-      fragmentShader: simpleFrag.value
-    }),
     solid: new THREE.MeshLambertMaterial( {
       color: 0x00dcdc,
       shading: THREE.SmoothShading
     }),
     wire: new THREE.MeshBasicMaterial( { wireframe: true } ),
     wood: new THREE.MeshPhongMaterial( {
-      ambient: new THREE.Color( "#000000" ),
       emissive: new THREE.Color( "#000000" ),
       specular: new THREE.Color( "#b15712" ),
       shininess: 10,

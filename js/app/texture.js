@@ -1,6 +1,9 @@
 define( ["three"], function ( THREE ) {
   var texturePath = "js/textures/";
-  var brushed = THREE.ImageUtils.loadTexture( texturePath + "brushed.png" );
+  var loader = new THREE.TextureLoader();
+  var cubeLoader = new THREE.CubeTextureLoader();
+
+  var brushed = loader.load( texturePath + "brushed.png" );
   brushed.repeat = new THREE.Vector2( 20, 4 );
   brushed.wrapS = THREE.RepeatWrapping;
   brushed.wrapT = THREE.RepeatWrapping;
@@ -14,14 +17,14 @@ define( ["three"], function ( THREE ) {
     texturePath + "sky.jpg",
     texturePath + "sky.jpg"
   ];
-  var sky =  THREE.ImageUtils.loadTextureCube( urls );
+  var sky = cubeLoader.load( urls );
   //sky.mapping = THREE.SphericalReflectionMapping;
 
-  var wood = THREE.ImageUtils.loadTexture( texturePath + "wood.jpg" );
+  var wood = loader.load( texturePath + "wood.jpg" );
   wood.repeat = new THREE.Vector2( 13, 13 );
   wood.wrapS = THREE.RepeatWrapping;
   wood.wrapT = THREE.RepeatWrapping;
-  var woodBump = THREE.ImageUtils.loadTexture( texturePath + "woodBump.jpg" );
+  var woodBump = loader.load( texturePath + "woodBump.jpg" );
   woodBump.repeat = new THREE.Vector2( 13, 13 );
   woodBump.wrapS = THREE.RepeatWrapping;
   woodBump.wrapT = THREE.RepeatWrapping;
@@ -30,6 +33,6 @@ define( ["three"], function ( THREE ) {
     sky: sky,
     wood: wood,
     woodBump: woodBump,
-    world: THREE.ImageUtils.loadTexture( texturePath + "world2.jpg" )
+    world: loader.load( texturePath + "world2.jpg" )
   };
 } );

@@ -2,9 +2,9 @@ define( ["three", "camera", "container"], function ( THREE, camera, container ) 
   var renderer = new THREE.WebGLRenderer( { clearColor: 0x000000 } );
   renderer.sortObjects = false;
   renderer.autoClear = false;
-  renderer.shadowMapEnabled = true;
+  renderer.shadowMap.enabled = true;
   renderer.setPixelRatio( window.devicePixelRatio );
-  renderer.shadowMapType = THREE.PCFShadowMap;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
 
   // Update size on window resize
   renderer.updateSize = function () {
