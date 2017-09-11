@@ -4,7 +4,6 @@ var require = {
   baseUrl: 'js/app',
   shim: {
     // --- Use shim to mix together all THREE.js subcomponents
-    'threeCore': { exports: 'THREE' },
     'TrackballControls': { deps: ['threeCore'], exports: 'THREE' },
     'gentilis': { deps: ['threeCore'] },
     'gentilisBold': { deps: ['threeCore'] },
@@ -17,9 +16,10 @@ var require = {
     // --- start THREE sub-components
     three: '../lib/three',
     threeCore: '../lib/three.min',
+    threeGlobal: '../lib/threeGlobal',
     TrackballControls: '../lib/controls/TrackballControls',
-    gentilis: '../../fonts/gentilis_regular.typeface',
-    gentilisBold: '../../fonts/gentilis_bold.typeface',
+    gentilis: '../../fonts/gentilis_regular.typeface.json',
+    gentilisBold: '../../fonts/gentilis_bold.typeface.json',
     // --- end THREE sub-components
     detector: '../lib/Detector',
     stats: '../lib/stats.min',
