@@ -18,10 +18,13 @@ define( ["three", "text!gentilisBold"], function ( THREE, gentilisBold ) {
   var vectors = [];
   for ( var p = points.length - 1; p >= 0; p-- ) {
   //for ( var p = 0; p < points.length; p++ ) {
-    vectors.push( new THREE.Vector3( 0, points[p].x, points[p].y ) );
+    vectors.push( new THREE.Vector2( points[p].x, points[p].y ) );
   }
-  var ring = new THREE.LatheGeometry( vectors, 128 );
+  var ring = new THREE.LatheGeometry( points, 128 );
   //var ring = new THREE.TorusGeometry( plateRadius + chromeRadius / 2, chromeRadius, 32, 100 );
+  var m = new THREE.Matrix4();
+  m.makeRotationX( Math.PI / 2 );
+  ring.applyMatrix( m );
 
   var arrowPoints = [
     new THREE.Vector3( 0, 0, 0 ),
@@ -31,7 +34,7 @@ define( ["three", "text!gentilisBold"], function ( THREE, gentilisBold ) {
   var arrow = new THREE.LatheGeometry( arrowPoints, 3 );
 
   // Rotate arrow and scale to correct proportions
-  var m = new THREE.Matrix4();
+  m = new THREE.Matrix4();
   m.makeRotationX( Math.PI / 2 );
   arrow.applyMatrix( m );
   m.makeScale( 1, 1, 0.2 );

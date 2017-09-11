@@ -11,7 +11,7 @@ define( ["three", "shader!simple.vert", "shader!simple.frag", "texture"], functi
 
   return {
     basic: new THREE.MeshBasicMaterial( { color: "#00ff00" } ),
-    chrome: new THREE.MeshPhongMaterial( {
+    chrome: new THREE.MeshStandardMaterial( {
       color: new THREE.Color( "#c4c4d4" ),
       emissive: new THREE.Color( "#121515" ),
       specular: new THREE.Color( "#d4d4ff" ),
@@ -19,7 +19,7 @@ define( ["three", "shader!simple.vert", "shader!simple.frag", "texture"], functi
       bumpMap: texture.brushed,
       bumpScale: 0.003,
       envMap: texture.sky,
-      metal: true,
+      metalness: 0.5,
       shininess: 15
     } ),
     cover: new THREE.MeshPhongMaterial( {
