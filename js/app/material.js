@@ -14,13 +14,10 @@ define( ["three", "texture"], function ( THREE, texture ) {
     chrome: new THREE.MeshStandardMaterial( {
       color: new THREE.Color( "#c4c4d4" ),
       emissive: new THREE.Color( "#121515" ),
-      specular: new THREE.Color( "#d4d4ff" ),
-
       bumpMap: texture.brushed,
-      bumpScale: 0.003,
+      bumpScale: 0.005,
       envMap: texture.sky,
-      metalness: 0.5,
-      shininess: 15
+      metalness: 0.8,
     } ),
     cover: new THREE.MeshPhongMaterial( {
       color: new THREE.Color( "#000000" ),

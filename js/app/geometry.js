@@ -38,6 +38,7 @@ define( ["three", "text!gentilisBold"], function ( THREE, gentilisBold ) {
 
   var triangle = new THREE.CircleGeometry( 1, 3 );
 
+  // Perhaps better to use THREE.FontLoader
   var font = new THREE.Font( JSON.parse( gentilisBold ) );
 
   var createText = function( t ) {
