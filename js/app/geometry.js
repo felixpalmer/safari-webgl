@@ -1,4 +1,4 @@
-define( ["three", "gentilisBold"], function ( THREE ) {
+define( ["three", "text!gentilisBold"], function ( THREE, gentilisBold ) {
   var plateRadius = 10.8;
   var rimRadius = 0.7;
   var chromeRadius = 1.6;
@@ -39,11 +39,13 @@ define( ["three", "gentilisBold"], function ( THREE ) {
 
   var triangle = new THREE.CircleGeometry( 1, 3 );
 
+  var font = new THREE.Font( JSON.parse( gentilisBold ) );
+
   var createText = function( t ) {
     var text = new THREE.TextGeometry( t, {
       size: 2,
       height: 0.04,
-      font: "gentilis",
+      font: font,
       weight: "bold",
       style: "normal"
     } );
