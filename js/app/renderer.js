@@ -4,7 +4,7 @@ define( ["three", "camera", "container"], function ( THREE, camera, container ) 
   renderer.autoClear = false;
   renderer.shadowMap.enabled = true;
   renderer.setPixelRatio( window.devicePixelRatio );
-  renderer.shadowMap.type = THREE.PCFShadowMap;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   // Update size on window resize
   renderer.updateSize = function () {

@@ -14,9 +14,11 @@ define( ["three", "texture"], function ( THREE, texture ) {
     chrome: new THREE.MeshStandardMaterial( {
       color: new THREE.Color( "#c4c4d4" ),
       emissive: new THREE.Color( "#121515" ),
+      emissiveIntensity: 0.1,
       bumpMap: texture.brushed,
       bumpScale: 0.005,
       envMap: texture.sky,
+      envMapIntensity: 0.72,
       metalness: 0.8,
     } ),
     cover: new THREE.MeshPhongMaterial( {
@@ -40,7 +42,7 @@ define( ["three", "texture"], function ( THREE, texture ) {
     flatRed: flatWithColor( new THREE.Color( "#ff2700" ) ),
     flatWhite: flatWithColor( new THREE.Color( "#ffffff" ) ),
     sky: new THREE.MeshBasicMaterial( { map: texture.sky } ),
-    solid: new THREE.MeshLambertMaterial( {
+    solid: new THREE.MeshPhongMaterial( {
       color: 0x00dcdc,
       shading: THREE.SmoothShading
     }),
@@ -53,6 +55,16 @@ define( ["three", "texture"], function ( THREE, texture ) {
       bumpScale: 0.06,
       bumpMap: texture.wood
     } ),
-    world: new THREE.MeshBasicMaterial( { map: texture.world } )
+    worldold: new THREE.MeshBasicMaterial( {
+      map: texture.world
+    } ),
+    world: new THREE.MeshStandardMaterial( {
+      emissive: new THREE.Color( "#ffffff" ),
+      emissiveIntensity: 0.1,
+      specular: new THREE.Color( "#b15712" ),
+      metalness: 0.8,
+      reflectivity: 0.29,
+      map: texture.world
+    } )
   };
 } );
