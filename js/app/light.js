@@ -1,6 +1,6 @@
 define( ["three", "scene"], function ( THREE, scene ) {
   //var light = new THREE.DirectionalLight( 0xffffff );
-  var light = new THREE.SpotLight( 0xffffff, 1, 333, Math.PI / 4, 0.35, 2 );
+  var light = new THREE.SpotLight( 0xf4d8ba, 1, 333, Math.PI / 4, 0.35, 2 );
   light.position.set( 25, -20, 20 );
   light.target.position.set( 0, 0, 0 );
   light.castShadow = true;
