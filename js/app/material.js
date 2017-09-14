@@ -35,7 +35,7 @@ define( ["three", "texture"], function ( THREE, texture ) {
       combine: THREE.MixOperation,
       envMap: texture.sky,
       reflectivity: 0.29,
-      shininess: 190
+      shininess: 9
     } ),
     flatBlue: flatWithColor( new THREE.Color( "#1557fb" ) ),
     flatGrey: flatWithColor( new THREE.Color( "#979797" ) ),
