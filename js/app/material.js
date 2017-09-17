@@ -4,7 +4,6 @@ define( ["three", "texture"], function ( THREE, texture ) {
       color: color,
       emissive: new THREE.Color( "#232323" ),
       specular: new THREE.Color( "#ccccff" ),
-      shading: THREE.SmoothShading,
       shininess: 40
     } );
   };
@@ -46,6 +45,12 @@ define( ["three", "texture"], function ( THREE, texture ) {
       color: 0x00dcdc,
       shading: THREE.SmoothShading
     }),
+    standard: new THREE.MeshStandardMaterial( {
+      color: "#1557fb",
+      emissive: new THREE.Color( "#232323" ),
+      metalness: 1.0,
+      roughness: 0.6
+    } ),
     wire: new THREE.MeshBasicMaterial( { wireframe: true } ),
     wood: new THREE.MeshPhongMaterial( {
       emissive: new THREE.Color( "#000000" ),

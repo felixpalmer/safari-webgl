@@ -305,19 +305,25 @@
         <code>&nbsp;&nbsp;color: new THREE.Color( "#1557fb" ),</code></br>
         <code>&nbsp;&nbsp;emissive: new THREE.Color( "#232323" ),</code></br>
         <code>&nbsp;&nbsp;specular: new THREE.Color( "#ccccff" ),</code></br>
-        <code>&nbsp;&nbsp;shading: THREE.FlatShading,</code></br>
         <code>&nbsp;&nbsp;shininess: 40</code></br>
         <code>} );</code></br>
         <div class="threejs-container small-top">Loading...</div>
 	</div></section>
 	<section class="slide"><div>
-		<h2>Textured Phong</h2>
+		<h2>MeshStandardMaterial</h2>
+        <code>new THREE.MeshStandardMaterial( {</code></br>
+        <code>&nbsp;&nbsp;color: new THREE.Color( "#1557fb" ),</code></br>
+        <code>&nbsp;&nbsp;emissive: new THREE.Color( "#232323" ),</code></br>
+        <code>&nbsp;&nbsp;metalness: 1.0,</code></br>
+        <code>&nbsp;&nbsp;roughness: 0.6</code></br>
+        <code>} );</code></br>
+        <div class="threejs-container small-top">Loading...</div>
+	</div></section>
+	<section class="slide"><div>
+		<h2>Textured Materials</h2>
         <code>new THREE.MeshPhongMaterial( {</code></br>
         <code>&nbsp;&nbsp;map: texture.wood,</code></br>
-        <code>&nbsp;&nbsp;ambient: new THREE.Color( "#000000" ),</code></br>
-        <code>&nbsp;&nbsp;emissive: new THREE.Color( "#000000" ),</code></br>
-        <code>&nbsp;&nbsp;specular: new THREE.Color( "#b15712" ),</code></br>
-        <code>&nbsp;&nbsp;shininess: 10</code></br>
+        <code>&nbsp;&nbsp;...</code></br>
         <code>} ),</code></br>
         <div class="threejs-container small-top">Loading...</div>
         <img class="tiny" src="js/textures/wood.jpg">
@@ -356,7 +362,6 @@
         <code>&nbsp;&nbsp;transparent: true,</code></br>
         <code>&nbsp;&nbsp;opacity: 0.95,</code></br>
         <code>&nbsp;&nbsp;blending: THREE.AdditiveBlending,</code></br>
-        <code>&nbsp;&nbsp;shading: THREE.SmoothShading,</code></br>
         <code>&nbsp;&nbsp;combine: THREE.MixOperation,</code></br>
         <code>&nbsp;&nbsp;envMap: texture.sky,</code></br>
         <code>&nbsp;&nbsp;reflectivity: 0.29,</code></br>

@@ -98,15 +98,18 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
           app.setMaterial( material.flatBlue, [app.blob, app.cover, app.ring, app.smallRing] );
         }
         if ( slideNumber === materialSlideStart + 4 ) {
-          app.highlight( app.table, 7 );
+          app.setMaterial( material.standard, [app.blob, app.cover, app.ring, app.smallRing] );
         }
         if ( slideNumber === materialSlideStart + 5 ) {
-          app.highlight( app.ring, 17 );
+          app.highlight( app.table, 7 );
         }
         if ( slideNumber === materialSlideStart + 6 ) {
+          app.highlight( app.ring, 17 );
+        }
+        if ( slideNumber === materialSlideStart + 7 ) {
           var t = 0;
           var bumpChange = function() {
-            if ( shower.getCurrentSlideNumber() !== materialSlideStart + 6 ) {
+            if ( shower.getCurrentSlideNumber() !== materialSlideStart + 7 ) {
               return;
             }
             t += 0.5;
@@ -116,25 +119,24 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
           bumpChange();
           app.highlight( app.blob );
         }
-        if ( slideNumber === materialSlideStart + 7 ) {
+        if ( slideNumber === materialSlideStart + 8 ) {
           app.setMaterial( material.cover, [app.blob, app.backplate, app.cover, app.ring, app.smallRing] );
         }
         // Bringing it to life
-        if ( slideNumber === 25 ) {
+        if ( slideNumber === 26 ) {
           app.lightMove = true;
         }
         // Light
-        if ( slideNumber === 26 ) {
+        if ( slideNumber === 27 ) {
           app.spin = false;
           app.lightMove = true;
         }
         // Camera control
-        if ( slideNumber === 31 ) {
+        if ( slideNumber === 32 ) {
           app.spin = false;
         }
         // End
-        if ( slideNumber === 32 ) {
-          app.setMaterial( material.cover, [app.blob, app.backplate, app.cover, app.ring, app.smallRing] );
+        if ( slideNumber === 38 ) {
         }
       }
 
