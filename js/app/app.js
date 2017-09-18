@@ -121,16 +121,6 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       app.cover.applyMatrix( m );
       scene.add( app.cover );
       
-      // Get all meshes
-      app.meshes = [];
-      for ( var c in scene.children ) {
-        if ( scene.children.hasOwnProperty( c ) ) {
-          var obj = scene.children[c];
-          if ( obj instanceof THREE.Mesh ) {
-            app.meshes.push( obj );
-          }
-        }
-      }
       
       // Triangles pointing out from inner ring
       for ( n = 0; n < 8; n++ ) {
@@ -172,6 +162,17 @@ function ( THREE, camera, container, controls, geometry, light, material, render
       app.creditText.position.y = -3.7;
       app.creditText.position.z = 0.1;
       scene.add( app.creditText );
+
+      // Get all meshes
+      app.meshes = [];
+      for ( var c in scene.children ) {
+        if ( scene.children.hasOwnProperty( c ) ) {
+          var obj = scene.children[c];
+          if ( obj instanceof THREE.Mesh ) {
+            app.meshes.push( obj );
+          }
+        }
+      }
 
       renderer.domElement.onclick = function () {
         app.bearing = 2 * Math.PI * Math.random();

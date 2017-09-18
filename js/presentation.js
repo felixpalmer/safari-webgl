@@ -53,7 +53,7 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
           app.highlight( app.backplate );
         }
         // Geometries
-        var geomSlideStart = 11; // Bit crappy, should really have better way of referring to slides
+        var geomSlideStart = 9; // Bit crappy, should really have better way of referring to slides
         if ( slideNumber === geomSlideStart ) {
           app.explode( true );
           app.spin = false;
@@ -74,7 +74,7 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
           app.highlight( app.label );
         }
         // Materials
-        var materialSlideStart = 17;
+        var materialSlideStart = 15;
         if ( slideNumber === materialSlideStart ) {
           var i = 0;
           var materials = [material.flatBlue, material.chrome, material.flatWhite, material.wood, material.basic, material.cover];
@@ -123,20 +123,20 @@ require( ['detector', 'app', 'container', 'material', 'renderer'], function ( De
           app.setMaterial( material.cover, [app.blob, app.backplate, app.cover, app.ring, app.smallRing] );
         }
         // Bringing it to life
-        if ( slideNumber === 26 ) {
+        if ( slideNumber === 24 ) {
           app.lightMove = true;
         }
         // Light
-        if ( slideNumber === 27 ) {
+        if ( slideNumber === 25 ) {
           app.spin = false;
           app.lightMove = true;
         }
         // Camera control
-        if ( slideNumber === 32 ) {
+        if ( slideNumber === 30 ) {
           app.spin = false;
         }
         // End
-        if ( slideNumber === 38 ) {
+        if ( slideNumber === 36 ) {
         }
       }
 
